@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putvoid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 15:35:33 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 21:54:45 by rade-sar         ###   ########.fr       */
+/*   Created: 2021/12/16 16:03:56 by rade-sar          #+#    #+#             */
+/*   Updated: 2021/12/16 16:08:32 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../libft.h"
 
-int	main(int argc, char **argv)
+int	ft_putvoid(unsigned long n, char *base, int start)
 {
-	t_game	game;
+	unsigned long	i;
+	int				size;
 
-	if (argc != 2)
-		return (0);
-	check_all(argv[1]);
-	init_game(argv[1], &game);
-	init_window(&game);
-	init_images(&game);
-	delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
+	i = n;
+	size = 0;
+	if (i == 0)
+		return (ft_putstr("0x0"));
+	if (start)
+		size += ft_putstr("0x");
+	if (i > 15)
+	{
+		size += ft_putvoid(i / 16, base, 0);
+		size += ft_putchar(base[i % 16]);
+	}
+	else
+		size += ft_putchar(base[i]);
+	return (size);
 }

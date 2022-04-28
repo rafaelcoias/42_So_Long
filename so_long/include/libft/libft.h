@@ -13,18 +13,37 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/* INCLUDES */
+
 # include <stdbool.h>
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <ctype.h>
+
+/* DEFINES */
+
+# define RED "\033[0;31m"
+# define RESET "\033[0m"
+# define GREEN "\033[1;32m"
+# define OPEN_MAX 256
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+/* STRUCTS */
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+/* LIBFT */
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -87,5 +106,24 @@ int			ft_lstsize(t_list *lst);
 int			ft_lstsize(t_list *lst);
 
 long long	ft_atol(const char *str);
+
+/* GET_NEXT_LINE */
+
+char		*get_next_line(int fd);
+char		*ft_find_nl(char *str);
+char		*ft_strcat(char *dest, char *src);
+char		*ft_new_save(char *str);
+int			ft_count_nl(char *str);
+
+/* FT_PRINT_F */
+
+int			ft_printf(const char *str, ...);
+int			ft_check_flag(va_list list, char c);
+int			ft_putchar(char c);
+int			ft_putstr(char *str);
+int			ft_putnbr(int n);
+int			ft_put_unsigned_nbr(unsigned int n);
+int			ft_putvoid(unsigned long n, char *base, int start);
+int			ft_puthexa(unsigned int n, char *base);
 
 #endif

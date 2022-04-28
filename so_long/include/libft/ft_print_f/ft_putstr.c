@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 15:35:33 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 21:54:45 by rade-sar         ###   ########.fr       */
+/*   Created: 2021/12/16 16:02:35 by rade-sar          #+#    #+#             */
+/*   Updated: 2021/12/16 16:43:19 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../libft.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr(char *str)
 {
-	t_game	game;
+	int	i;
 
-	if (argc != 2)
-		return (0);
-	check_all(argv[1]);
-	init_game(argv[1], &game);
-	init_window(&game);
-	init_images(&game);
-	delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
+	i = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
+	while (str[i])
+		write(1, &str[i++], 1);
+	return (i);
 }

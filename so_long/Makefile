@@ -1,54 +1,100 @@
+########## 		   NAMES 		##########
+
 NAME = so_long
 
-SRC = ./src/main.c
+BONUS = 
+
+########## 		  SOURCES 		##########
+
+SRC_PATH = ./src/
+
+SRC = ${SRC_PATH}main.c ${SRC_PATH}check.c ${SRC_PATH}init_game.c  ${SRC_PATH}init_window.c  ${SRC_PATH}error_msg.c 
+
+########## 		  INCLUDES 		##########
 
 HEAD = ./include
 
-MAKE_LIBFT = cd ./include/libft && make all
+########## 		   LIBFT 		##########
+
+LIBFT = libft
 
 LIBFT_PATH = ./include/libft
+
+########## 		COMPILATION 	##########
 
 OBJ = ${SRC:.c=.o}
 
 CC = gcc
 
+########## 		   FLAGS 		##########
+
 CFLAGS = -Wall -Wextra -Werror -g
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-RM = rm -f
+########## 		   COLORS 		##########
 
-# COLORS #
 GREEN		=	\033[0;32m
 YELLOW		=	\033[0;33m
 RED			=	\033[0;31m
 RESET       =   \033[0m
 
+########## 		  COMMANDS		##########
+
+MAKE_LIBFT = cd ${LIBFT_PATH} && make all
+
+CLEAN_LIBFT = cd ${LIBFT_PATH} && make clean -s
+
+FCLEAN_LIBFT = cd ${LIBFT_PATH} && make fclean -s
+
+RM = rm -f
+
+########## 		  MESSAGES 		##########
+
+CREATE_PROJ_MSG = @echo "\n<========== $(GREEN)$(NAME) created$(RESET) ==========>\n"
+
+CREATE_BONUS_MSG = @echo "\n<========== $(GREEN)$(BONUS) created$(RESET) ==========>\n"
+
+REMOVED_MSG = @echo "\n<========== $(RED)$(NAME) removed$(RESET) ==========>\n"
+
+NORM_LIBFT_MSG = @echo "\n<========== $(YELLOW)Norm $(LIBFT)$(RESET) ==========>\n"
+
+NORM_PROJ_MSG = @echo "\n<========== $(YELLOW)Norm $(NAME)$(RESET) ==========>\n"
+
+########## 		  TARGETS 		##########
+
 ${NAME}: ${OBJ} 
 	${MAKE_LIBFT} -s
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
-	@echo "\n ======= $(GREEN)so_long created$(RESET) ======= \n"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
 
-# RULES #
+${BONUS}: ${OBJ}
+	${MAKE_LIBFT} -s
+	$(CC) $(CFLAGS) -o $(BONUS) $(OBJ) -L $(LIBFT_PATH) -lft
+
+########## 		   RULES 		##########
 
 all: ${NAME} 
+	${CREATE_PROJ_MSG}
+
+bonus: ${BONUS}
+	${CREATE_BONUS_MSG}
 
 clean:
-	@cd ./include/libft && make clean -s
+	${CLEAN_LIBFT}
 	${RM} ${OBJ}
 
 fclean: clean 
-	@cd ./include/libft && make fclean -s
-	${RM} ${NAME} ${CHECK}
-	@echo "\n ======= $(RED)so_long removed$(RESET) ======= \n"
+	${FCLEAN_LIBFT}
+	${RM} ${NAME} ${BONUS}
+	${REMOVED_MSG}
 	
 
 re:	fclean all
 
 norm:
-	@echo "\n ======= $(YELLOW)norm libft$(RESET) ======= \n"
-	@cd ./include/libft && norminette -R CheckForbiddenSourceHeader *.c && norminette -R CheckDefine *.h
-	@echo "\n ======= $(YELLOW)norm so_long$(RESET) =======\n "
-	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine push_swap.h
+	${NORM_LIBFT_MSG}
+	@cd ${LIBFT_PATH} && norminette -R CheckForbiddenSourceHeader *.c && norminette -R CheckDefine *.h
+	${NORM_PROJ_MSG}
+	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine *.h
 
-.PHONY: all clean fclean re norm
+.PHONY: all bonus clean fclean re norm
