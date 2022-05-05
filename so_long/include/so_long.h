@@ -15,7 +15,7 @@
 
 /* INCLUDES */
 
-# include "./libft/libft.h"
+# include "./libft/library/libft.h"
 # include <mlx.h>
 
 /* DEFINES */
@@ -34,10 +34,12 @@
 /* ERRORS */
 
 # define FILE_ERROR "Argument is not a .ber file.\n"
-# define MAP_RD_ERROR "Could not open map."
-# define MAP_ERROR "Map is not valid."
-# define PLAYER_ERROR "There should only be one player."
-# define MLX_ERROR "Could not open mlx."
+# define MAP_RD_ERROR "Could not open map.\n"
+# define MAP_SHP_ERROR "Map has not a valid shape.\n"
+# define MAP_ERROR "Map must have edges (walls).\n"
+# define CHAR_ERROR "There should be at least 1 item, 1 player and 1 exit.\n"
+# define PLAYER_ERROR "There should only be one player.\n"
+# define MLX_ERROR "Could not open mlx.\n"
 
 /* IMAGES */
 

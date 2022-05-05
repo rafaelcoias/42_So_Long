@@ -33,63 +33,51 @@ static int	check_is_rect(char *path)
 	return (1);
 }
 
-static int	check_has_edges(char **map, int w, int h)
+static void	confirm_chars(t_game *game, char *line, int row, int coll)
 {
-	int	row;
-	int	coll;
-
-	row = 0;
-	coll = 0;
-	while (map[0][coll])
-		if (map[0][coll++] != '1')
-			return (0);
-	coll = 0;
-	while (map[h - 1][coll])
-		if (map[h - 1][coll++] != '1')
-			return (0);
-	while (map[row])
-		if (map[row++][0] != '1')
-			return (0);
-	row = 0;
-	while (map[row])
-		if (map[row++][w - 1] != '1')
-			return (0);
-	return (1);
+	if ((row == 0 || row == game->map.height - 1
+			|| coll == 0 || coll == game->map.width - 1))
+		if (line[coll] != '1')
+			error_msg(MAP_ERROR);
+	if (line[coll] == 'E')
+		game->map.count_exit++;
+	if (line[coll] == 'C')
+		game->map.count_col++;
+	if (line[coll] == 'P')
+		game->map.count_pla++;
 }
 
-static void	check_chars(t_game *game, char **map)
+static void	check_chars(t_game *game, char *path)
 {
-	int	row;
-	int	coll;
+	int		row;
+	int		coll;
+	char	*line;
+	int		fd;
 
 	row = 0;
-	coll = 0;
-	while (map[row])
+	coll = -1;
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		error_msg(MAP_RD_ERROR);
+	line = get_next_line(fd);
+	while (line)
 	{
-		coll = 0;
-		while (map[row][coll])
-		{
-			if (map[row][coll] == 'E')
-				game->map.count_exit++;
-			if (map[row][coll] == 'C')
-				game->map.count_col++;
-			if (map[row][coll] == 'P')
-				game->map.count_pla++;
-			coll++;
-		}
+		coll = -1;
+		while (line[++coll + 1])
+			confirm_chars(game, line, row, coll);
 		row++;
-	}
+		free(line);
+		line = get_next_line(fd);
+	}	
 }
 
 void	check_map(t_game *game)
 {
 	if (!check_is_rect(game->map.path))
-		error_msg(MAP_ERROR);
-	if (!check_has_edges(game->map.map, game->map.width, game->map.height))
-		error_msg(MAP_ERROR);
-	check_chars(game, game->map.map);
+		error_msg(MAP_SHP_ERROR);
+	check_chars(game, game->map.path);
 	if (!game->map.count_exit || !game->map.count_col || !game->map.count_pla)
-		error_msg(MAP_ERROR);
+		error_msg(CHAR_ERROR);
 	if (game->map.count_pla > 1)
 		error_msg(PLAYER_ERROR);
 }

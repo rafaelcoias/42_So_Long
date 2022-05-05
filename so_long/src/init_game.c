@@ -39,12 +39,12 @@ static void	init_map(t_game *game)
 	i = 0;
 	while (line)
 	{
-		game->map.map[row] = ft_calloc(game->map.width + 2, sizeof(char));
+		game->map.map[row] = ft_calloc(game->map.width + 1, sizeof(char));
 		if (!(game->map.map[row]))
 			return (free_map(game->map.map));
 		i = 0;
 		coll = 0;
-		while (line[i])
+		while (line[i] && line[i] != '\n')
 			game->map.map[row][coll++] = line[i++];
 		game->map.map[row++][coll] = '\0';
 		free(line);

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 15:35:33 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 21:54:45 by rade-sar         ###   ########.fr       */
+/*   Created: 2022/05/05 18:54:12 by rade-sar          #+#    #+#             */
+/*   Updated: 2022/05/05 18:54:13 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+# include <stdarg.h>
+# include <unistd.h>
 
-	if (argc != 2)
-		return (0);
-	check_all(argv[1]);
-	init_game(argv[1], &game);
-	init_window(&game);
-	init_images(&game);
-	mlx_loop(game.mlx);
-	delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
-}
+int		ft_printf(const char *str, ...);
+
+int		ft_check_flag(va_list list, char c);
+
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_putnbr(int n);
+int		ft_put_unsigned_nbr(unsigned int n);
+int		ft_putvoid(unsigned long n, char *base, int start);
+int		ft_puthexa(unsigned int n, char *base);
+
+#endif

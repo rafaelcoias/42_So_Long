@@ -18,7 +18,7 @@ HEAD = ./include
 
 LIBFT = libft
 
-LIBFT_PATH = ./include/libft
+LIBFT_PATH = ./include/libft/
 
 ########## 		COMPILATION 	##########
 
@@ -30,7 +30,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -l mlx -l ft -framework OpenGL -framework Appkit
 
 ########## 		   COLORS 		##########
 
@@ -65,11 +65,9 @@ NORM_PROJ_MSG = @echo "\n<========== $(YELLOW)Norm $(NAME)$(RESET) ==========>\n
 
 ${NAME}: ${OBJ} 
 	${MAKE_LIBFT} -s
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
 
-${BONUS}: ${OBJ}
-	${MAKE_LIBFT} -s
-	$(CC) $(CFLAGS) -o $(BONUS) $(OBJ) -L $(LIBFT_PATH) -lft
+${BONUS}: 
 
 ########## 		   RULES 		##########
 
@@ -92,8 +90,7 @@ fclean: clean
 re:	fclean all
 
 norm:
-	${NORM_LIBFT_MSG}
-	@cd ${LIBFT_PATH} && norminette -R CheckForbiddenSourceHeader *.c && norminette -R CheckDefine *.h
+	@cd ${LIBFT_PATH} && make norm
 	${NORM_PROJ_MSG}
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine *.h
 
