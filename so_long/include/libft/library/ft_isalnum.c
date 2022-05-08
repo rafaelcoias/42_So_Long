@@ -19,14 +19,3 @@ int	ft_isalnum(int c)
 		return (1);
 	return (0);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char c;
-	int	n;
-
-	c = '.';
-	n = ft_isalnum(c);
-	printf("%d\n", n);
-}*/

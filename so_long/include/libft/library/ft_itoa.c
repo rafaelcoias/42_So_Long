@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static int	ft_malloc(int n, int count)
 {
@@ -84,17 +84,9 @@ char	*ft_itoa(int n)
 		count++;
 	}
 	str = malloc(sizeof(char) * (ft_malloc(n, count) + 1));
-	if (str == NULL)
-		return (NULL);
+	if (!str)
+		return (0);
 	str = ft_strnbr(str, n);
 	str = ft_strrev(str, n);
 	return (str);
 }
-/*
-int main(void)
-{
-    printf("%s\n", ft_itoa(2147483647));
-    printf("%s\n", ft_itoa(0));
-    printf("%s\n", ft_itoa(-1542));
-    printf("%s\n", ft_itoa(-2147483648));
-}*/

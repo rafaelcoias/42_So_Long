@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_atoi(const char *str)
 {
 	int		i;
@@ -36,9 +34,3 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	printf("%i", ft_atoi("   +-1234ab567"));
-}*/

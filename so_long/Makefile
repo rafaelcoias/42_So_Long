@@ -8,7 +8,15 @@ BONUS =
 
 SRC_PATH = ./src/
 
-SRC = ${SRC_PATH}main.c ${SRC_PATH}check.c ${SRC_PATH}init_game.c  ${SRC_PATH}init_window.c  ${SRC_PATH}error_msg.c 
+SRC =	${SRC_PATH}main.c			\
+		${SRC_PATH}check.c 			\
+		${SRC_PATH}init_game.c		\
+		${SRC_PATH}init_window.c	\
+		${SRC_PATH}error_msg.c		\
+		${SRC_PATH}do_game.c		\
+		${SRC_PATH}end_game.c		\
+		${SRC_PATH}move_player.c	\
+		${SRC_PATH}render_images.c	\
 
 ########## 		  INCLUDES 		##########
 

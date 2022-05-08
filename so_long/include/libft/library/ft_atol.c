@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 long long	ft_atol(const char *str)
 {
 	long long	result;

@@ -14,12 +14,11 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include <unistd.h>
 
 int		ft_printf(const char *str, ...);
-
 int		ft_check_flag(va_list list, char c);
-
 int		ft_putchar(char c);
 int		ft_putstr(char *str);
 int		ft_putnbr(int n);

@@ -14,8 +14,9 @@
 # define LIBFT_H
 
 /* INCLUDES */
-# include "../ft_printf/ft_printf.h"
-# include "../get_next_line/get_next_line.h"
+
+# include "./ft_printf/ft_printf.h"
+# include "./get_next_line/get_next_line.h"
 # include <stdbool.h>
 # include <string.h>
 # include <unistd.h>
@@ -25,16 +26,12 @@
 # include <stdio.h>
 # include <ctype.h>
 
-/* DEFINES */
+/* COLORS */
 
 # define RED "\033[0;31m"
-# define RESET "\033[0m"
+# define YELLOW "\033[0;33m"
 # define GREEN "\033[1;32m"
-# define OPEN_MAX 256
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+# define RESET "\033[0m"
 
 /* STRUCTS */
 

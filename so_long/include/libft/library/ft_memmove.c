@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -33,15 +33,4 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	str[] = "rafael coias";
-	char	str2[] = "miguel pereira";
-	char	*cpy;
 
-	cpy = ft_memmove(str, str2, 15);
-	printf("%s\n", cpy);
-	return (0);
-}*/

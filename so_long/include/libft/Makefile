@@ -79,7 +79,7 @@ SRC = 	$(LIBFT_PATH)ft_isalpha.c	\
 
 ########## 		  INCLUDES 		##########
 
-HEAD = $(LIBFT_PATH)include
+HEAD = ./
 
 ########## 		COMPILATION 	##########
 

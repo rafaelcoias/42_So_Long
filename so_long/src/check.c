@@ -23,6 +23,8 @@ static int	check_is_rect(char *path)
 		error_msg(MAP_RD_ERROR);
 	line = get_next_line(fd);
 	len = ft_strlen(line);
+	if (len < 5)
+		error_msg(SMALL_MAP_ERROR);
 	while (line)
 	{
 		if (ft_strlen(line) != len)
@@ -41,10 +43,12 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 			error_msg(MAP_ERROR);
 	if (line[coll] == 'E')
 		game->map.count_exit++;
-	if (line[coll] == 'C')
+	else if (line[coll] == 'C')
 		game->map.count_col++;
-	if (line[coll] == 'P')
+	else if (line[coll] == 'P')
 		game->map.count_pla++;
+	else if (line[coll] == '0')
+		game->map.count_ground++;
 }
 
 static void	check_chars(t_game *game, char *path)
@@ -82,7 +86,7 @@ void	check_map(t_game *game)
 		error_msg(PLAYER_ERROR);
 }
 
-void	check_all(char *path)
+void	check_ber(char *path)
 {
 	size_t	len;
 	int		fd;

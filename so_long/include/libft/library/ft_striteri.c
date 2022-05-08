@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
@@ -25,9 +25,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
-/*
-int main(void)
-{
-    printf("%s\n", ft_striteri("0123", ft_changechr));
-    printf("%s\n", ft_striteri("34", ft_changechr));
-}*/

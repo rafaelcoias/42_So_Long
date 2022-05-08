@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -28,11 +28,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	char s1[] = "0347481";
-	char cc = '4';
-	printf("%s\n", ft_memchr(s1, cc, 7));
-}*/

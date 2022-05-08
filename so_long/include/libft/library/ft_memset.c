@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -28,13 +28,3 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (ptr);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	str[] = "rafael coias";
-	char	*cpy;
-
-	cpy = ft_memset(str, 55, 6);
-	printf("%s\n", cpy);
-}*/

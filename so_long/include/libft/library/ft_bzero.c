@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -27,10 +27,3 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-/*
-int main(void)
-{
-	char	str[12] = "rafael coias";
-	ft_bzero(str, 3);
-	printf("%s\n", str + 3);
-}*/

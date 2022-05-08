@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static int	search_set(char c, char const *set)
 {
@@ -54,9 +54,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str[i] = '\0';
 	return (str);
 }
-/*
-int main(void)
-{
-	printf("%s\n", ft_strtrim("   xxxtripouille", " x"));
-	printf("%s\n\n", "rafael pereira----coias");
-}*/

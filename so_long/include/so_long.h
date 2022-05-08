@@ -15,8 +15,9 @@
 
 /* INCLUDES */
 
-# include "./libft/library/libft.h"
-# include <mlx.h>
+# include "./libft/libft.h"
+# include "./images/images.h"
+
 
 /* DEFINES */
 
@@ -25,9 +26,10 @@
 # define S 115
 # define W 119
 # define TOP 65362
-# define BOT 65364
+# define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
+# define ESCAPE 27
 # define PIXEL_SIZE 50
 # define TITLE "GAME"
 
@@ -37,29 +39,17 @@
 # define MAP_RD_ERROR "Could not open map.\n"
 # define MAP_SHP_ERROR "Map has not a valid shape.\n"
 # define MAP_ERROR "Map must have edges (walls).\n"
+# define SMALL_MAP_ERROR "Map is too small.\n"
 # define CHAR_ERROR "There should be at least 1 item, 1 player and 1 exit.\n"
 # define PLAYER_ERROR "There should only be one player.\n"
 # define MLX_ERROR "Could not open mlx.\n"
-
-/* IMAGES */
-
-# define WALL "./images/wall.xpm"
-# define EXIT "./images/exit.xpm"
-# define BACK_GRD "./images/ground.xpm"
-# define PLAYER "./images/player.xpm"
-# define COLL "./images/coll.xpm"
+# define WIN_ERROR "Could not find window.\n"
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
 
 /* STRUCTS */
-
-typedef struct s_player
-{
-	int		x;
-	int		y;
-}	t_player;
 
 typedef struct s_map
 {
@@ -71,9 +61,7 @@ typedef struct s_map
 	int			count_col;
 	int			count_exit;
 	int			count_pla;
-	int			collected;
-	int			can_exit;
-	t_player	player;
+	int			count_ground;
 }	t_map;
 
 typedef struct s_img
@@ -85,7 +73,18 @@ typedef struct s_img
 	void	*exit;
 	void	*back_ground;
 	void	*player;
+	void	*player_w_coll;
 	void	*collectable;
+	void	*block;
+	void	*transport;
+	void	*water;
+	void	*line;
+	void	*semi_line;
+	void	*mov;
+	void	*es;
+	void	*win;
+	void	*lose;
+	void	*nbr;
 }	t_img;
 
 typedef struct s_game
@@ -94,7 +93,10 @@ typedef struct s_game
 	void	*window;
 	int		height;
 	int		width;
-	int		steps;
+	int		p_i;
+	int		p_j;
+	int		has_coll;
+	int		count_moves;
 	t_map	map;
 	t_img	img;
 }	t_game;
@@ -104,13 +106,21 @@ typedef struct s_game
 void		init_game(char *path, t_game *game);
 void		init_window(t_game *game);
 void		init_images(t_game *game);
+void		render_images(t_game *game);
 void		delete_images(t_game game);
 
 /* CHECK FUNCTIONS */
 
 int			error_msg(char *str);
-void		check_all(char *path);
+void		check_ber(char *path);
 void		check_map(t_game *game);
+
+/* GAME FUNCTIONS */
+
+void    	do_game(t_game game);
+void		handle_keypress(int key, t_game *game);
+void		move_player(t_game *game, char move);
+void		end_game(t_game *game, int win);
 
 /* FREE MAP */
 
