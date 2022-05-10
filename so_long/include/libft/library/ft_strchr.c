@@ -27,9 +27,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	printf("%s\n", ft_strchr("rafael", 'r' + 256));
-}*/

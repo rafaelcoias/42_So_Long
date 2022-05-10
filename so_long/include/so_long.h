@@ -30,8 +30,10 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ESCAPE 27
+# define ENTER "a"
 # define PIXEL_SIZE 50
 # define TITLE "GAME"
+# define MAP_TEST "../include/maps/mapa.ber"
 
 /* ERRORS */
 
@@ -85,7 +87,17 @@ typedef struct s_img
 	void	*win;
 	void	*lose;
 	void	*nbr;
+	void	*menu_test;
+	void	*menu_play;
+	void	*menu_exit;
 }	t_img;
+
+typedef struct s_menu
+{
+	int		test;
+	int		play;
+	int		exit;
+}	t_menu;
 
 typedef struct s_game
 {
@@ -97,6 +109,7 @@ typedef struct s_game
 	int		p_j;
 	int		has_coll;
 	int		count_moves;
+	t_menu	menu;
 	t_map	map;
 	t_img	img;
 }	t_game;

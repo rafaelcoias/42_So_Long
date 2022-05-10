@@ -33,7 +33,7 @@ static int	count_words(const char *str, char c)
 	return (i);
 }
 
-static char	*ft_strcpy(char *dest, char *src, int j, int i)
+static char	*ft_strcpy_(char *dest, char *src, int j, int i)
 {
 	int	k;
 
@@ -51,7 +51,7 @@ static char	*ft_strdup1(char *src, int j, int i)
 	ptr = (char *) malloc((i - j + 1) * sizeof(char));
 	if (ptr == 0)
 		return (0);
-	ft_strcpy(ptr, src, j, i);
+	ft_strcpy_(ptr, src, j, i);
 	return (ptr);
 }
 
@@ -82,24 +82,3 @@ char	**ft_split(char const *s, char c)
 	split[x] = 0;
 	return (split);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	*str;
-	char	sep;
-	char	**result;
-	int		i;
-	int		j;
-
-	str = "444o4rafael4e4lindo444";
-	sep = '4';
-	result = ft_split(str, sep);
-	i = 0;
-	j = 0;
-	while (result[i] != 0)
-	{
-		printf("%s\n", result[i]);
-		i++;
-	}
-}*/

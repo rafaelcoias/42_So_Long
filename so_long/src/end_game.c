@@ -8,8 +8,8 @@ static void put_nbr(t_game *game, int width, int height, int nbr)
     char    after[4];
     char    path[35];
 
-    before = "../include/images/win_numbers/";
-    after = ".xpm";
+    before = ft_strcpy(before, "../include/images/win_numbers/");
+    after = ft_strcpy(after, ".xpm");
     i = 0;
     j = 0;
     while (before[i])
@@ -50,13 +50,12 @@ static void write_moves(t_game *game, int w, int h, int nbr)
     }
 }
 
-static void handle_escape_press(int key, t_game *game)
+static void handle_keypress(int key, t_game *game)
 {
     if (key == ESCAPE)
     {
         mlx_destroy_window(game->mlx, game->win);
-		game->win = NULL;
-        exit(0);
+        do_menu_window(game);
     }
 }
 
@@ -83,6 +82,6 @@ void    end_game(t_game *game, int win)
 			0, 0);
     write_moves(game, 310, 355, game->count_moves);
     write_score(game, 330, 400, (game->map.count_ground / game->count_moves) * 1333);
-    mlx_hook(game->win, KeyPress, KeyPressMask, &handle_escape_press, game);
+    mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
     mlx_loop(game->mlx);
 }

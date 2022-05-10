@@ -18,13 +18,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
+	game.map.path = argv[1];
 	check_ber(argv[1]);
 	check_map(&game);
-	init_game(argv[1], &game);
-	init_window(&game);
 	init_images(&game);
-	render_images(&game);
-	do_game(game);
+	do_menu_window(&game);
 	delete_images(game);
 	free(game.mlx);
 	if (game.map.map)

@@ -18,5 +18,8 @@
 # define ES "../include/images/ES.xpm"
 # define WIN "../include/images/winner_win.xpm"
 # define LOSE "../include/images/game_over_win.xpm"
+# define MENU_TEST "../include/images/menu_test.xpm"
+# define MENU_PLAY "../include/images/menu_play.xpm"
+# define MENU_EXIT "../include/images/menu_exit.xpm"
 
 #endif

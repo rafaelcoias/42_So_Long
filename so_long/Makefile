@@ -2,8 +2,6 @@
 
 NAME = so_long
 
-BONUS = 
-
 ########## 		  SOURCES 		##########
 
 SRC_PATH = ./src/
@@ -82,9 +80,6 @@ ${BONUS}:
 all: ${NAME} 
 	${CREATE_PROJ_MSG}
 
-bonus: ${BONUS}
-	${CREATE_BONUS_MSG}
-
 clean:
 	${CLEAN_LIBFT}
 	${RM} ${OBJ}
@@ -102,4 +97,4 @@ norm:
 	${NORM_PROJ_MSG}
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine *.h
 
-.PHONY: all bonus clean fclean re norm
+.PHONY: all clean fclean re norm

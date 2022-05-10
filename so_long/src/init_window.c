@@ -25,13 +25,19 @@ void	init_window(t_game *game)
 static void	init_images2(t_game *game)
 {
 	game->img.mov = mlx_xpm_file_to_image(game->mlx, MOV,
-			&game->img.width, &game->img.height);
+			50, 25);
 	game->img.es = mlx_xpm_file_to_image(game->mlx, ES,
-			&game->img.width, &game->img.height);
+			50, 25);
 	game->img.win = mlx_xpm_file_to_image(game->mlx, WIN,
-			&game->img.width, &game->img.height);
+			550, 550);
 	game->img.lose = mlx_xpm_file_to_image(game->mlx, LOSE,
-			&game->img.width, &game->img.height);
+			550, 550);
+	game->img.menu_test = mlx_xpm_file_to_image(game->mlx, MENU_TEST,
+			550, 550);
+	game->img.menu_play = mlx_xpm_file_to_image(game->mlx, MENU_PLAY,
+			550, 550);
+	game->img.menu_exit = mlx_xpm_file_to_image(game->mlx, MENU_EXIT,
+			550, 550);
 }
 
 void	init_images(t_game *game)
@@ -56,6 +62,8 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.height);
 	game->img.line = mlx_xpm_file_to_image(game->mlx, LINE,
 			&game->img.width, &game->img.height);
+	game->img.semi_line = mlx_xpm_file_to_image(game->mlx, SEMI_LINE,
+			20, 25);
 	init_images2(game);
 }
 

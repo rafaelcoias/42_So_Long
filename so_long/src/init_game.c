@@ -86,7 +86,6 @@ static void	init_game_stats(t_game *game)
 void	init_game(char *path, t_game *game)
 {
 	game->map.fd = open(path, O_RDONLY);
-	game->map.path = path;
 	game->map.height = get_height(path, game);
 	game->map.map = ft_calloc(game->map.height, sizeof(char *));
 	if (!(game->map.map))
@@ -99,5 +98,6 @@ void	init_game(char *path, t_game *game)
 	game->height = game->map.height * PIXEL_SIZE;
 	game->img.width = PIXEL_SIZE;
 	game->img.height = PIXEL_SIZE;
+	init_window(game);
 	close(game->map.fd);
 }

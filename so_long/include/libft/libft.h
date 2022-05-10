@@ -28,10 +28,10 @@
 
 /* COLORS */
 
-# define RED "\033[0;31m"
-# define YELLOW "\033[0;33m"
-# define GREEN "\033[1;32m"
-# define RESET "\033[0m"
+# define RED	"\033[0;31m"
+# define YELLOW	"\033[0;33m"
+# define GREEN	"\033[1;32m"
+# define RESET	"\033[0m"
 
 /* STRUCTS */
 
@@ -64,6 +64,7 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char		*ft_strcpy(char *dest, char *src);
 
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 void		ft_bzero(void *s, size_t n);

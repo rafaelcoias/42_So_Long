@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
 
-static void put_nbr(t_game *game, int width, int nbr)
+void    put_nbr(t_game *game, int width, int nbr)
 {
     int     i;
     int     j;
@@ -25,7 +25,7 @@ static void put_nbr(t_game *game, int width, int nbr)
     mlx_put_image_to_window(game->mlx, game->window, game->img.nbr, width, 0);
 }
 
-static void write_move_number(t_game *game, int width, int nbr)
+void    write_move_number(t_game *game, int width, int nbr)
 {
     if (nbr < 10)
     {
@@ -39,7 +39,7 @@ static void write_move_number(t_game *game, int width, int nbr)
     }
 }
 
-static void write_moves(t_game *game)
+void    write_moves(t_game *game)
 {
     int width;
     int i;

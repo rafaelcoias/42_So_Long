@@ -35,6 +35,7 @@ SRC = 	$(LIBFT_PATH)ft_isalpha.c	\
 		$(LIBFT_PATH)ft_memset.c 	\
 		$(LIBFT_PATH)ft_strchr.c 	\
 		$(LIBFT_PATH)ft_strlcat.c 	\
+		$(LIBFT_PATH)ft_strcpy.c	\
 		$(LIBFT_PATH)ft_strlcpy.c 	\
 		$(LIBFT_PATH)ft_tolower.c 	\
 		$(LIBFT_PATH)ft_toupper.c 	\
@@ -113,6 +114,10 @@ RANLIB = ranlib
 
 NORM_LIBFT_MSG = @echo "\n<========== $(YELLOW)Norm $(NAME)$(RESET) ==========>\n"
 
+CREATE_LIBFT_MSG = @echo "\n<========== $(GREEN)$(NAME) created$(RESET) ==========>\n"
+
+REMOVE_LIBFT_MSG = @echo "\n<========== $(RED)$(NAME) removed$(RESET) ==========>\n"
+
 ########## 		  TARGETS 		##########
 
 ${NAME}: ${OBJ}
@@ -122,12 +127,14 @@ ${NAME}: ${OBJ}
 ########## 		   RULES 		##########
 
 all: ${NAME}
+	${CREATE_LIBFT_MSG}
 
 clean: 
 	${RM} ${OBJ}
 
 fclean: clean
 	${RM} ${NAME}
+	${REMOVE_LIBFT_MSG}
 
 re:	fclean all
 
