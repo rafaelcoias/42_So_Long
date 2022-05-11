@@ -81,6 +81,7 @@ static void	init_game_stats(t_game *game)
 	game->p_j = 0;
 	game->has_coll = 0;
 	game->count_moves = 0;
+	game->bonus = 0;
 }
 
 void	init_game(char *path, t_game *game)

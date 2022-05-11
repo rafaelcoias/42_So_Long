@@ -15,6 +15,8 @@ SRC =	${SRC_PATH}main.c			\
 		${SRC_PATH}end_game.c		\
 		${SRC_PATH}move_player.c	\
 		${SRC_PATH}render_images.c	\
+		${SRC_PATH}do_menu_window.c	\
+		${SRC_PATH}put_images.c		\
 
 ########## 		  INCLUDES 		##########
 

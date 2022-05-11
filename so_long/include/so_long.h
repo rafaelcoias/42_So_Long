@@ -77,6 +77,7 @@ typedef struct s_img
 	void	*player;
 	void	*player_w_coll;
 	void	*collectable;
+	void	*bonus;
 	void	*block;
 	void	*transport;
 	void	*water;
@@ -109,6 +110,7 @@ typedef struct s_game
 	int		p_j;
 	int		has_coll;
 	int		count_moves;
+	int		bonus;
 	t_menu	menu;
 	t_map	map;
 	t_img	img;
@@ -116,10 +118,12 @@ typedef struct s_game
 
 /* INIT FUNCTIONS */
 
+void		do_menu_window(t_game *game);
 void		init_game(char *path, t_game *game);
 void		init_window(t_game *game);
 void		init_images(t_game *game);
 void		render_images(t_game *game);
+void		put_image(t_game *game, int xy[2], int i, int j);
 void		delete_images(t_game game);
 
 /* CHECK FUNCTIONS */
@@ -131,7 +135,6 @@ void		check_map(t_game *game);
 /* GAME FUNCTIONS */
 
 void    	do_game(t_game game);
-void		handle_keypress(int key, t_game *game);
 void		move_player(t_game *game, char move);
 void		end_game(t_game *game, int win);
 

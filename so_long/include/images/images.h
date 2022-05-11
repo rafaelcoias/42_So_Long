@@ -9,6 +9,7 @@
 # define PLAYER "../include/images/player.xpm"
 # define PLAYER_W_COLL "../include/images/player_w_coll.xpm"
 # define COLL "../include/images/collectable.xpm"
+# define BONUS "../include/images/bonus.xpm"
 # define BLOCK "../include/images/block.xpm"
 # define TRANSPORT "../include/images/transport.xpm"
 # define WATER "../include/images/water.xpm"

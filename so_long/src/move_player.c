@@ -68,6 +68,8 @@ void    move_player(t_game *game, char move)
 		end_game(game, 0);
 	else if (game->map.map[game->p_i][game->p_j] == 'C')
 		game->has_coll = 1;
+	else if (game->map.map[game->p_i][game->p_j] == 'S')
+		game->bonus += 575;
 	check_transport(game);
 	game->map.map[game->p_i][game->p_j] = 'P';
 }

@@ -52,6 +52,8 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.height);
 	game->img.collectable = mlx_xpm_file_to_image(game->mlx, COLL,
 			&game->img.width, &game->img.height);
+	game->img.bonus = mlx_xpm_file_to_image(game->mlx, BONUS,
+			&game->img.width, &game->img.height);
 	game->img.player_w_coll = mlx_xpm_file_to_image(game->mlx, PLAYER_W_COLL,
 			&game->img.width, &game->img.height);
 	game->img.block = mlx_xpm_file_to_image(game->mlx, BLOCK,
