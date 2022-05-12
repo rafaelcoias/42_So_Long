@@ -6,7 +6,7 @@
 #    By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 12:10:14 by rade-sar          #+#    #+#              #
-#    Updated: 2022/04/26 11:48:17 by rade-sar         ###   ########.fr        #
+#    Updated: 2022/05/12 13:57:11 by rade-sar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,8 @@ re:	fclean all
 
 norm:
 	${NORM_LIBFT_MSG}
-	@cd ${LIBFT_PATH} && norminette -R CheckForbiddenSourceHeader *.c && norminette -R CheckDefine *.h
+	@cd ${LIBFT_PATH} && norminette -R CheckForbiddenSourceHeader *.c
+	@norminette -R CheckDefine *.h
 	@echo "\n"
 	@cd ${PRINT_F_PATH} && norminette -R CheckForbiddenSourceHeader *.c && norminette -R CheckDefine *.h
 	@echo "\n"

@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:54:49 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 22:08:35 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:28:52 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 # include "./libft/libft.h"
 # include "./images/images.h"
-
 
 /* DEFINES */
 
@@ -134,7 +133,7 @@ void		check_map(t_game *game);
 
 /* GAME FUNCTIONS */
 
-void    	do_game(t_game game);
+void		do_game(t_game game);
 void		move_player(t_game *game, char move);
 void		end_game(t_game *game, int win);
 

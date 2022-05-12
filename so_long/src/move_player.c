@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 14:06:57 by rade-sar          #+#    #+#             */
+/*   Updated: 2022/05/12 14:10:48 by rade-sar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static int can_move(t_game *game, char move)
+static int	can_move(t_game *game, char move)
 {
-    if (move == 'd' && (game->map.map[game->p_i][game->p_j + 1] == '1'
-        || (game->map.map[game->p_i][game->p_j + 1] == 'B'
-            && game->has_coll == 0)))
+	if (move == 'd' && (game->map.map[game->p_i][game->p_j + 1] == '1'
+		|| (game->map.map[game->p_i][game->p_j + 1] == 'B'
+		&& game->has_coll == 0)))
 		return (0);
 	else if (move == 'a' && (game->map.map[game->p_i][game->p_j - 1] == '1'
-        || (game->map.map[game->p_i][game->p_j - 1] == 'B'
-            && game->has_coll == 0)))
+		|| (game->map.map[game->p_i][game->p_j - 1] == 'B'
+		&& game->has_coll == 0)))
 		return (0);
 	else if (move == 's' && (game->map.map[game->p_i + 1][game->p_j] == '1'
-        || (game->map.map[game->p_i + 1][game->p_j] == 'B'
-            && game->has_coll == 0)))
+		|| (game->map.map[game->p_i + 1][game->p_j] == 'B'
+		&& game->has_coll == 0)))
 		return (0);
 	else if (move == 'w' && (game->map.map[game->p_i - 1][game->p_j] == '1'
-        || (game->map.map[game->p_i - 1][game->p_j] == 'B'
-            && game->has_coll == 0)))
+		|| (game->map.map[game->p_i - 1][game->p_j] == 'B'
+		&& game->has_coll == 0)))
 		return (0);
-    return (1);
+	return (1);
 }
 
 static void	check_transport(t_game *game)
@@ -35,25 +47,24 @@ static void	check_transport(t_game *game)
 			j = -1;
 			while (game->map.map[i][++j])
 			{
-				if (game->map.map[i][j] == 'T' && i != game->p_i 
-					&& j != game->p_j) 
+				if (game->map.map[i][j] == 'T' && i != game->p_i
+						&& j != game->p_j)
 				{
 					game->map.map[game->p_i][game->p_j] = 'A';
 					game->p_i = i;
 					game->p_j = j;
 				}
 			}
-			
 		}
 	}
 }
 
-void    move_player(t_game *game, char move)
+void	move_player(t_game *game, char move)
 {
-    if (!can_move(game, move))
-        return ;
-    game->map.map[game->p_i][game->p_j] = 'A';
-    if (move == 'd')
+	if (!can_move(game, move))
+		return ;
+	game->map.map[game->p_i][game->p_j] = 'A';
+	if (move == 'd')
 		game->p_j++;
 	else if (move == 'a')
 		game->p_j--;
@@ -61,10 +72,10 @@ void    move_player(t_game *game, char move)
 		game->p_i++;
 	else if (move == 'w')
 		game->p_i--;
-    game->count_moves++;
+	game->count_moves++;
 	if (game->map.map[game->p_i][game->p_j] == 'E')
 		end_game(game, 1);
-    else if (game->map.map[game->p_i][game->p_j] == 'A')
+	else if (game->map.map[game->p_i][game->p_j] == 'A')
 		end_game(game, 0);
 	else if (game->map.map[game->p_i][game->p_j] == 'C')
 		game->has_coll = 1;
