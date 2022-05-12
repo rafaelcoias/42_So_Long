@@ -9,7 +9,8 @@ SRC_PATH = ./src/
 SRC =	${SRC_PATH}main.c			\
 		${SRC_PATH}check.c 			\
 		${SRC_PATH}init_game.c		\
-		${SRC_PATH}init_window.c	\
+		${SRC_PATH}init_windows.c	\
+		${SRC_PATH}init_images.c		\
 		${SRC_PATH}error_msg.c		\
 		${SRC_PATH}do_game.c		\
 		${SRC_PATH}end_game.c		\
@@ -17,6 +18,7 @@ SRC =	${SRC_PATH}main.c			\
 		${SRC_PATH}render_images.c	\
 		${SRC_PATH}do_menu_window.c	\
 		${SRC_PATH}put_images.c		\
+		${SRC_PATH}init_stats.c		\
 
 ########## 		  INCLUDES 		##########
 

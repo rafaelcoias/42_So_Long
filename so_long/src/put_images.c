@@ -26,6 +26,9 @@ static void	put_image2(t_game *game, int xy[2], int i, int j)
 	else if (game->map.map[i][j] == 'S')
 		mlx_put_image_to_window(game->mlx, game->window, game->img.bonus,
 			xy[0], xy[1]);
+	else if (game->map.map[i][j] == 'E')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.exit,
+			xy[0], xy[1]);
 }
 
 void	put_image(t_game *game, int xy[2], int i, int j)

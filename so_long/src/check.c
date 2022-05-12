@@ -77,6 +77,9 @@ static void	check_chars(t_game *game, char *path)
 
 void	check_map(t_game *game)
 {
+	game->map.count_exit = 0;
+	game->map.count_col = 0;
+	game->map.count_pla = 0;
 	if (!check_is_rect(game->map.path))
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);

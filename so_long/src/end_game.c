@@ -12,36 +12,26 @@
 
 #include "../include/so_long.h"
 
-static void	put_nbr(t_game *game, int width, int height, int nbr)
+static void	put_nbr(t_game *game, int width, int h, int nbr)
 {
 	int		i;
-	int		j;
-	char	before[30];
-	char	after[4];
-	char	path[35];
+	char	*str;
+	char	*path;
 
-	before = ft_strcpy(before, "../include/images/win_numbers/");
-	after = ft_strcpy(after, ".xpm");
-	i = 0;
-	j = 0;
-	while (before[i])
-		path[j++] = before[i++];
-	if (nbr > 99)
-		nbr = 0;
-	path[j] = nbr + '0';
-	i = 0;
-	while (after[i])
-		path[j++] = after[i++];
-	game->img.nbr = mlx_xpm_file_to_image(game->mlx, path,
+	i = -1;
+	str = malloc(sizeof(char) * 34);
+	path = NBR_WIN_PATH;
+	while (path[++i])
+		str[i] = path[i];
+	str[27] = nbr + '0';
+	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
 			&game->img.width, &game->img.height);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.nbr, width, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->img.nbr, width, h);
+	free(str);
 }
 
-static void	write_score(t_game *game, int w, int h)
+static void	write_score(t_game *game, int w, int h, int score)
 {
-	int	score;
-
-	score = (game->map.count_ground / game->count_moves) * 1333;
 	if (score < 10)
 		put_nbr(game, w, h, 0);
 	else
@@ -53,6 +43,9 @@ static void	write_score(t_game *game, int w, int h)
 
 static void	write_moves(t_game *game, int w, int h, int nbr)
 {
+	int	score;
+
+	score = (game->map.count_ground / game->count_moves) * 1333;
 	if (nbr < 10)
 	{
 		put_nbr(game, w, h, 0);
@@ -63,40 +56,31 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 		put_nbr(game, w, h, nbr / 10);
 		put_nbr(game, w + 30, h, nbr % 10);
 	}
+	write_score(game, 330, 400, score);
 }
 
-static void	handle_keypress(int key, t_game *game)
+static int	handle_keypress(int key, t_game *game)
 {
 	if (key == ESCAPE)
 	{
-		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
 		do_menu_window(game);
 	}
+	return (1);
 }
 
 void	end_game(t_game *game, int win)
 {
+	game->end_game.win = win;
 	mlx_destroy_window(game->mlx, game->window);
-	game->window = NULL;
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		error_msg(MLX_ERROR);
+	init_end_game_window(game);
 	if (win)
-		game->window = mlx_new_window(game->mlx, 550,
-				550, "WINNER");
+		mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
+			game->img.win, 0, 0);
 	else
-		game->window = mlx_new_window(game->mlx, 550,
-				550, "GAME OVER");
-	if (!game->window)
-		free(game->window);
-	if (win)
-		mlx_put_image_to_window(game->mlx, game->window, game->img.win,
-			0, 0);
-	else
-		mlx_put_image_to_window(game->mlx, game->window, game->img.lose,
-			0, 0);
+		mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
+			game->img.lose, 0, 0);
 	write_moves(game, 310, 355, game->count_moves);
-	write_score(game, 330, 400);
-	mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
-	mlx_loop(game->mlx);
+	mlx_hook(game->end_game.window, 02, 0, &handle_keypress, game);
+	mlx_loop(game->end_game.mlx);
 }

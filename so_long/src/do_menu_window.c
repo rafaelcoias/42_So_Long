@@ -47,40 +47,56 @@ static void	check_arrows(t_game *game, int key)
 	}
 }
 
-static void	handle_keypress(int key, t_game *game)
+static void	handle_keypress2(int key, t_game *game)
+{
+	if (key == ESCAPE)
+	{
+		mlx_destroy_window(game->menu.mlx, game->menu.window);
+		exit(0);
+	}
+	check_arrows(game, key);
+	if (game->menu.test)
+		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
+			game->img.menu_test, 0, 0);
+	if (game->menu.play)
+		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
+			game->img.menu_play, 0, 0);
+	if (game->menu.exit)
+		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
+			game->img.menu_exit, 0, 0);
+}
+
+static int	handle_keypress(int key, t_game *game)
 {
 	if (key == ENTER && game->menu.exit)
 	{
-		mlx_destroy_window(game->mlx, game->win);
-		game->win = NULL;
+		mlx_destroy_window(game->menu.mlx, game->menu.window);
+		game->menu.window = NULL;
 		exit(0);
 	}
 	else if (key == ENTER && game->menu.test)
 	{
-		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(MAP_TEST, game);
 		render_images(game);
 		do_game(game);
 	}
 	else if (key == ENTER && game->menu.play)
 	{
-		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(game->map.path, game);
 		render_images(game);
 		do_game(game);
 	}
-	check_arrows(game, key);
+	handle_keypress2(key, game);
+	return (1);
 }
 
 void	do_menu_window(t_game *game)
 {
-	if (game->window)
-		mlx_destroy_window(game->mlx, game->win);
-	game->width = 550;
-	game->height = 550;
-	init_window(game);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.menu_test,
-		0, 0);
-	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
-	mlx_loop(game.mlx);
+	init_menu_window(game);
+	mlx_put_image_to_window(game->menu.mlx, game->menu.window,
+		game->img.menu_test, 0, 0);
+	mlx_hook(game->menu.window, 02, 0, &handle_keypress, game);
+	mlx_loop(game->menu.mlx);
 }

@@ -127,14 +127,12 @@ ${NAME}: ${OBJ}
 ########## 		   RULES 		##########
 
 all: ${NAME}
-	${CREATE_LIBFT_MSG}
 
 clean: 
 	${RM} ${OBJ}
 
 fclean: clean
 	${RM} ${NAME}
-	${REMOVE_LIBFT_MSG}
 
 re:	fclean all
 

@@ -12,32 +12,31 @@
 
 #include "../include/so_long.h"
 
-void	init_window(t_game *game)
-{
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		error_msg(MLX_ERROR);
-	game->window = mlx_new_window(game->mlx, game->width, game->height, TITLE);
-	if (!game->window)
-		free(game->window);
-}
-
 static void	init_images2(t_game *game)
 {
+	int	twenty;
+	int	t_five;
+	int	fivety;
+
+	twenty = 20;
+	t_five = 25;
+	fivety = 50;
+	game->img.semi_line = mlx_xpm_file_to_image(game->mlx, SEMI_LINE,
+			&twenty, &t_five);
 	game->img.mov = mlx_xpm_file_to_image(game->mlx, MOV,
-			50, 25);
+			&fivety, &t_five);
 	game->img.es = mlx_xpm_file_to_image(game->mlx, ES,
-			50, 25);
+			&fivety, &t_five);
 	game->img.win = mlx_xpm_file_to_image(game->mlx, WIN,
-			550, 550);
+			&game->menu.width, &game->menu.width);
 	game->img.lose = mlx_xpm_file_to_image(game->mlx, LOSE,
-			550, 550);
+			&game->menu.width, &game->menu.width);
 	game->img.menu_test = mlx_xpm_file_to_image(game->mlx, MENU_TEST,
-			550, 550);
+			&game->menu.width, &game->menu.width);
 	game->img.menu_play = mlx_xpm_file_to_image(game->mlx, MENU_PLAY,
-			550, 550);
+			&game->menu.width, &game->menu.width);
 	game->img.menu_exit = mlx_xpm_file_to_image(game->mlx, MENU_EXIT,
-			550, 550);
+			&game->menu.width, &game->menu.width);
 }
 
 void	init_images(t_game *game)
@@ -64,8 +63,6 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.height);
 	game->img.line = mlx_xpm_file_to_image(game->mlx, LINE,
 			&game->img.width, &game->img.height);
-	game->img.semi_line = mlx_xpm_file_to_image(game->mlx, SEMI_LINE,
-			20, 25);
 	init_images2(game);
 }
 
@@ -75,5 +72,20 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.mlx, game.img.exit);
 	mlx_destroy_image(game.mlx, game.img.back_ground);
 	mlx_destroy_image(game.mlx, game.img.player);
+	mlx_destroy_image(game.mlx, game.img.player_w_coll);
 	mlx_destroy_image(game.mlx, game.img.collectable);
+	mlx_destroy_image(game.mlx, game.img.bonus);
+	mlx_destroy_image(game.mlx, game.img.block);
+	mlx_destroy_image(game.mlx, game.img.transport);
+	mlx_destroy_image(game.mlx, game.img.water);
+	mlx_destroy_image(game.mlx, game.img.line);
+	mlx_destroy_image(game.mlx, game.img.semi_line);
+	mlx_destroy_image(game.mlx, game.img.mov);
+	mlx_destroy_image(game.mlx, game.img.es);
+	mlx_destroy_image(game.mlx, game.img.win);
+	mlx_destroy_image(game.mlx, game.img.lose);
+	mlx_destroy_image(game.mlx, game.img.nbr);
+	mlx_destroy_image(game.mlx, game.img.menu_test);
+	mlx_destroy_image(game.mlx, game.img.menu_play);
+	mlx_destroy_image(game.mlx, game.img.menu_exit);
 }
