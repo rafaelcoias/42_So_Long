@@ -19,19 +19,21 @@ static void	put_nbr(t_game *game, int width, int h, int nbr)
 	char	*path;
 
 	i = -1;
-	str = malloc(sizeof(char) * 34);
+	str = malloc(sizeof(char) * 32);
 	path = NBR_WIN_PATH;
 	while (path[++i])
 		str[i] = path[i];
 	str[27] = nbr + '0';
 	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
 			&game->img.width, &game->img.height);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.nbr, width, h);
+	mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
+		game->img.nbr, width, h);
 	free(str);
 }
 
 static void	write_score(t_game *game, int w, int h, int score)
 {
+	printf("%i\n", score);
 	if (score < 10)
 		put_nbr(game, w, h, 0);
 	else
@@ -49,14 +51,15 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 	if (nbr < 10)
 	{
 		put_nbr(game, w, h, 0);
-		put_nbr(game, w + 30, h, nbr);
+		put_nbr(game, w + 25, h, nbr);
 	}
 	else if (nbr < 100)
 	{
 		put_nbr(game, w, h, nbr / 10);
-		put_nbr(game, w + 30, h, nbr % 10);
+		put_nbr(game, w + 25, h, nbr % 10);
 	}
-	write_score(game, 330, 400, score);
+	if (game->end_game.win)
+		write_score(game, 295, 390, score);
 }
 
 static int	handle_keypress(int key, t_game *game)
@@ -80,7 +83,7 @@ void	end_game(t_game *game, int win)
 	else
 		mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
 			game->img.lose, 0, 0);
-	write_moves(game, 310, 355, game->count_moves);
+	write_moves(game, 305, 345, game->count_moves);
 	mlx_hook(game->end_game.window, 02, 0, &handle_keypress, game);
 	mlx_loop(game->end_game.mlx);
 }

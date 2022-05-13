@@ -12,25 +12,46 @@
 
 #include "../include/so_long.h"
 
-static int	can_move(t_game *game, char move)
+static int	can_move_2(t_game *game, int key)
 {
-	if (move == 'd' && (game->map.map[game->p_i][game->p_j + 1] == '1'
+	if (key == RIGHT && (game->map.map[game->p_i][game->p_j + 1] == '1'
 		|| (game->map.map[game->p_i][game->p_j + 1] == 'B'
 		&& game->has_coll == 0)))
 		return (0);
-	else if (move == 'a' && (game->map.map[game->p_i][game->p_j - 1] == '1'
+	else if (key == LEFT && (game->map.map[game->p_i][game->p_j - 1] == '1'
 		|| (game->map.map[game->p_i][game->p_j - 1] == 'B'
 		&& game->has_coll == 0)))
 		return (0);
-	else if (move == 's' && (game->map.map[game->p_i + 1][game->p_j] == '1'
+	else if (key == DOWN && (game->map.map[game->p_i + 1][game->p_j] == '1'
 		|| (game->map.map[game->p_i + 1][game->p_j] == 'B'
 		&& game->has_coll == 0)))
 		return (0);
-	else if (move == 'w' && (game->map.map[game->p_i - 1][game->p_j] == '1'
+	else if (key == UP && (game->map.map[game->p_i - 1][game->p_j] == '1'
 		|| (game->map.map[game->p_i - 1][game->p_j] == 'B'
 		&& game->has_coll == 0)))
 		return (0);
 	return (1);
+}
+
+static int	can_move(t_game *game, int key)
+{
+	if (key == D && (game->map.map[game->p_i][game->p_j + 1] == '1'
+		|| (game->map.map[game->p_i][game->p_j + 1] == 'B'
+		&& game->has_coll == 0)))
+		return (0);
+	else if (key == A && (game->map.map[game->p_i][game->p_j - 1] == '1'
+		|| (game->map.map[game->p_i][game->p_j - 1] == 'B'
+		&& game->has_coll == 0)))
+		return (0);
+	else if (key == S && (game->map.map[game->p_i + 1][game->p_j] == '1'
+		|| (game->map.map[game->p_i + 1][game->p_j] == 'B'
+		&& game->has_coll == 0)))
+		return (0);
+	else if (key == W && (game->map.map[game->p_i - 1][game->p_j] == '1'
+		|| (game->map.map[game->p_i - 1][game->p_j] == 'B'
+		&& game->has_coll == 0)))
+		return (0);
+	return (can_move_2(game, key));
 }
 
 static void	check_transport(t_game *game)
@@ -42,10 +63,10 @@ static void	check_transport(t_game *game)
 	j = -1;
 	if (game->map.map[game->p_i][game->p_j] == 'T')
 	{
-		while (game->map.map[++i])
+		while (++i < game->map.height)
 		{
 			j = -1;
-			while (game->map.map[i][++j])
+			while (++j < game->map.width)
 			{
 				if (game->map.map[i][j] == 'T' && i != game->p_i
 						&& j != game->p_j)
@@ -59,18 +80,18 @@ static void	check_transport(t_game *game)
 	}
 }
 
-void	move_player(t_game *game, char move)
+void	move_player(t_game *game, int key)
 {
-	if (!can_move(game, move))
+	if (!can_move(game, key))
 		return ;
 	game->map.map[game->p_i][game->p_j] = 'A';
-	if (move == 'd')
+	if (key == D || key == RIGHT)
 		game->p_j++;
-	else if (move == 'a')
+	else if (key == A || key == LEFT)
 		game->p_j--;
-	else if (move == 's')
+	else if (key == S || key == DOWN)
 		game->p_i++;
-	else if (move == 'w')
+	else if (key == W || key == UP)
 		game->p_i--;
 	game->count_moves++;
 	if (game->map.map[game->p_i][game->p_j] == 'E')

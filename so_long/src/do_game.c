@@ -14,7 +14,7 @@
 
 static int	check_arrows(int key)
 {
-	if (key == TOP || key == DOWN || key == RIGHT || key == LEFT)
+	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
 		return (1);
 	return (0);
 }
@@ -33,7 +33,7 @@ static int	handle_keypress(int key, t_game *game)
 
 void	do_game(t_game *game)
 {
-	mlx_loop_hook(game->mlx, &render_images, &game);
+	mlx_loop_hook(game->mlx, &render_images, game);
 	mlx_hook(game->window, 02, 0, &handle_keypress, game);
 	mlx_loop(game->mlx);
 }

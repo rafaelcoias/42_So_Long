@@ -12,12 +12,26 @@
 
 #include "../include/so_long.h"
 
-void	init_all_stats(t_game *game)
+void	init_game_stats(t_game *game)
 {
 	game->p_i = 0;
 	game->p_j = 0;
 	game->has_coll = 0;
 	game->count_moves = 0;
+	game->bonus = 0;
+	game->end_game.win = 0;
+	game->bonus = 0;
+}
+
+void	init_all_stats(t_game *game, char *path)
+{
+	game->map.path = path;
+	game->mlx = mlx_init();
+	game->p_i = 0;
+	game->p_j = 0;
+	game->has_coll = 0;
+	game->count_moves = 0;
+	game->map.count_ground = 0;
 	game->bonus = 0;
 	game->menu.width = 550;
 	game->menu.test = 1;

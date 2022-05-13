@@ -38,7 +38,7 @@ CC = gcc
 
 ########## 		   FLAGS 		##########
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 MLX_FLAGS = -l mlx -l ft -framework OpenGL -framework Appkit
 

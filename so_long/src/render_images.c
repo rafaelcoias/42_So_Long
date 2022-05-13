@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-/*
+
 static void	put_nbr(t_game *game, int width, int nbr)
 {
 	int		i;
@@ -19,7 +19,7 @@ static void	put_nbr(t_game *game, int width, int nbr)
 	char	*path;
 
 	i = -1;
-	str = malloc(sizeof(char) * 30);
+	str = malloc(sizeof(char) * 28);
 	path = NBR_PATH;
 	while (path[++i])
 		str[i] = path[i];
@@ -42,7 +42,7 @@ static void	write_move_number(t_game *game, int width, int nbr)
 		put_nbr(game, width, nbr / 10);
 		put_nbr(game, width + 15, nbr % 10);
 	}
-}*/
+}
 
 static void	write_moves(t_game *game)
 {
@@ -51,7 +51,7 @@ static void	write_moves(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window, game->img.line, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.mov, 50, 0);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.es, 100, 0);
-	//write_move_number(game, 150, game->count_moves);
+	write_move_number(game, 150, game->count_moves);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.semi_line,
 		180, 0);
 	width = 200;
@@ -79,15 +79,17 @@ int	render_images(t_game *game)
 	int	height;
 	int	xy[2];
 
+	if (!game->window || !game->mlx)
+		return (0);
 	i = -1;
 	j = -1;
 	width = 0;
 	height = check_window(game);
-	while (game->map.map[++i])
+	while (++i < game->map.height)
 	{
 		j = -1;
 		width = 0;
-		while (game->map.map[i][++j])
+		while (++j < game->map.width)
 		{
 			xy[0] = width;
 			xy[1] = height;

@@ -24,7 +24,7 @@ static void	check_arrows(t_game *game, int key)
 	if (game->menu.test)
 	{
 		init_menu_stats(game);
-		if (key == TOP)
+		if (key == UP)
 			game->menu.exit = 1;
 		else if (key == DOWN)
 			game->menu.play = 1;
@@ -32,7 +32,7 @@ static void	check_arrows(t_game *game, int key)
 	else if (game->menu.play)
 	{
 		init_menu_stats(game);
-		if (key == TOP)
+		if (key == UP)
 			game->menu.test = 1;
 		else if (key == DOWN)
 			game->menu.exit = 1;
@@ -40,7 +40,7 @@ static void	check_arrows(t_game *game, int key)
 	else if (game->menu.exit)
 	{
 		init_menu_stats(game);
-		if (key == TOP)
+		if (key == UP)
 			game->menu.play = 1;
 		else if (key == DOWN)
 			game->menu.test = 1;

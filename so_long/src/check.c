@@ -46,7 +46,11 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 	else if (line[coll] == 'C')
 		game->map.count_col++;
 	else if (line[coll] == 'P')
+	{
+		game->p_i = row;
+		game->p_j = coll;
 		game->map.count_pla++;
+	}
 	else if (line[coll] == '0')
 		game->map.count_ground++;
 }

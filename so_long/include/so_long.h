@@ -25,7 +25,7 @@
 # define D 2
 # define S 1
 # define W 13
-# define TOP 126
+# define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
@@ -127,7 +127,8 @@ typedef struct s_game
 
 /* INIT FUNCTIONS */
 
-void		init_all_stats(t_game *game);
+void		init_all_stats(t_game *game, char *path);
+void		init_game_stats(t_game *game);
 void		init_game(char *path, t_game *game);
 void		init_menu_window(t_game *game);
 void		init_game_window(t_game *game);
@@ -150,7 +151,7 @@ void		delete_images(t_game game);
 
 void		do_menu_window(t_game *game);
 void		do_game(t_game *game);
-void		move_player(t_game *game, char move);
+void		move_player(t_game *game, int key);
 void		end_game(t_game *game, int win);
 
 /* FREE MAP */

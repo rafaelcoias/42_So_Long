@@ -79,7 +79,7 @@ void	init_game(char *path, t_game *game)
 {
 	game->map.fd = open(path, O_RDONLY);
 	game->map.height = get_height(path, game);
-	game->map.map = ft_calloc(game->map.height, sizeof(char *));
+	game->map.map = ft_calloc(game->map.height + 1, sizeof(char *));
 	if (!(game->map.map))
 		return ;
 	if (game->map.fd < 0)
