@@ -74,6 +74,7 @@ static void	check_transport(t_game *game)
 					game->map.map[game->p_i][game->p_j] = 'A';
 					game->p_i = i;
 					game->p_j = j;
+					return ;
 				}
 			}
 		}

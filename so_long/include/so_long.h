@@ -63,11 +63,8 @@ typedef struct s_map
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*mlx;
 	int		width;
-	int		height;
-	int		x;
-	int		y;
 	void	*wall;
 	void	*exit;
 	void	*back_ground;
@@ -95,6 +92,9 @@ typedef struct s_menu
 	void	*mlx;
 	void	*window;
 	int		width;
+	int		in_menu;
+	int		in_game;
+	int		in_end;
 	int		test;
 	int		play;
 	int		exit;
@@ -144,7 +144,7 @@ void		check_map(t_game *game);
 
 int			render_images(t_game *game);
 void		init_images(t_game *game);
-void		put_image(t_game *game, int xy[2], int i, int j);
+void		put_image(t_game *game, int xyij[4]);
 void		delete_images(t_game game);
 
 /* GAME FUNCTIONS */

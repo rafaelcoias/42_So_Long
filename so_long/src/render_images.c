@@ -73,30 +73,25 @@ static int	check_window(t_game *game)
 
 int	render_images(t_game *game)
 {
-	int	i;
-	int	j;
-	int	width;
-	int	height;
-	int	xy[2];
+	int	xyij[4];
 
-	if (!game->window || !game->mlx)
+	if (!game->mlx || !game->menu.in_game)
 		return (0);
-	i = -1;
-	j = -1;
-	width = 0;
-	height = check_window(game);
-	while (++i < game->map.height)
+	xyij[0] = 0;
+	xyij[1] = check_window(game);
+	xyij[2] = -1;
+	while (++xyij[2] < game->map.height)
 	{
-		j = -1;
-		width = 0;
-		while (++j < game->map.width)
+		xyij[3] = -1;
+		xyij[0] = 0;
+		while (++x[3] < game->map.width)
 		{
-			xy[0] = width;
-			xy[1] = height;
-			put_image(game, xy, i, j);
-			width += PIXEL_SIZE;
+			xyij[0] = width;
+			xyij[1] = height;
+			put_image(game, xyij);
+			xyij[0] += PIXEL_SIZE;
 		}
-		height += PIXEL_SIZE;
+		xyij[1] += PIXEL_SIZE;
 	}
 	return (1);
 }

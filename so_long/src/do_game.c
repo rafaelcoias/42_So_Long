@@ -26,7 +26,7 @@ static int	handle_keypress(int key, t_game *game)
 		mlx_destroy_window(game->mlx, game->window);
 		exit(0);
 	}
-	else if (strchr("wasd", key) || check_arrows(key))
+	else if (ft_strchr("wasd", key) || check_arrows(key))
 		move_player(game, key);
 	return (1);
 }

@@ -67,7 +67,12 @@ static int	handle_keypress(int key, t_game *game)
 	if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
-		do_menu_window(game);
+		game->menu.in_end = 0;
+		game->menu.in_menu = 1;
+		game->menu.in_game = 0;
+		init_menu_window(game);
+		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
+			game->img.menu_test, 0, 0);
 	}
 	return (1);
 }
@@ -75,6 +80,9 @@ static int	handle_keypress(int key, t_game *game)
 void	end_game(t_game *game, int win)
 {
 	game->end_game.win = win;
+	game->menu.in_end = 1;
+	game->menu.in_menu = 0;
+	game->menu.in_game = 0;
 	mlx_destroy_window(game->mlx, game->window);
 	init_end_game_window(game);
 	if (win)

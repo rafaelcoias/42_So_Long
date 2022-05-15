@@ -10,6 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// Quando dá erro, pode ser por 3 razoes:
+//
+// 1 - Os loops usam a função handle_keypress mesmo não devendo 
+// (quando estão no end_game, verificam os movimentos do jogo).
+// SOLUCAO : verificar em que janela do programa estão sempre que entra na 
+// funcao handle_keypress.
+//
+// 2 - Os loops não têm uma janela válida/ativada porque foi destruida
+// SOLUCAO : usar sempre a mesma *window e o mesmo *mlx
+//
+// 3 - 
+
 #include "../include/so_long.h"
 
 int	main(int argc, char **argv)
