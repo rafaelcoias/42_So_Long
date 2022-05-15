@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_windows.c                                     :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 16:22:15 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 16:24:46 by rade-sar         ###   ########.fr       */
+/*   Created: 2022/04/28 20:24:24 by rade-sar          #+#    #+#             */
+/*   Updated: 2022/04/28 21:55:07 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	init_game_window(t_game *game)
+int	error_msg(char *str)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		error_msg(MLX_ERROR);
-	game->window = mlx_new_window(game->mlx, game->width,
-			game->height, "THIN ICE");
-	if (game->window)
-		return ;
-	free(game->window);
-	error_msg(WIN_ERROR);
+	ft_putstr_fd(RED, 2);
+	ft_putstr_fd("\nError : ", 2);
+	ft_putstr_fd(RESET, 2);
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+	exit(1);
 }

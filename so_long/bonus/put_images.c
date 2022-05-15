@@ -14,16 +14,20 @@
 
 static void	put_image2(t_game *game, int xyij[4])
 {
-	if (game->map.map[xyij[2]][xyij[3]] == 'A')
+	if (game->map.map[xyij[2]][xyij[3]] == 'B')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.block,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'A')
 		mlx_put_image_to_window(game->mlx, game->window, game->img.water,
 			xyij[0], xyij[1]);
-	else if (game->map.map[xyij[2]][xyij[3]] == 'E' 
-		&& game->has_coll == game->map.count_col)
-		mlx_put_image_to_window(game->mlx, game->window, game->img.exit,
+	else if (game->map.map[xyij[2]][xyij[3]] == 'T')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.transport,
 			xyij[0], xyij[1]);
-	else if (game->map.map[xyij[2]][xyij[3]] == 'E' 
-		&& game->has_coll != game->map.count_col)
-		mlx_put_image_to_window(game->mlx, game->window, game->img.block,
+	else if (game->map.map[xyij[2]][xyij[3]] == 'S')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.bonus,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'E')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.exit,
 			xyij[0], xyij[1]);
 }
 

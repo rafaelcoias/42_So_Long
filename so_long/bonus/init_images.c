@@ -27,6 +27,16 @@ static void	init_images2(t_game *game)
 			&fivety, &t_five);
 	game->img.es = mlx_xpm_file_to_image(game->img.mlx, ES,
 			&fivety, &t_five);
+	game->img.win = mlx_xpm_file_to_image(game->img.mlx, WIN,
+			&game->menu.width, &game->menu.width);
+	game->img.lose = mlx_xpm_file_to_image(game->img.mlx, LOSE,
+			&game->menu.width, &game->menu.width);
+	game->img.menu_test = mlx_xpm_file_to_image(game->img.mlx, MENU_TEST,
+			&game->menu.width, &game->menu.width);
+	game->img.menu_play = mlx_xpm_file_to_image(game->img.mlx, MENU_PLAY,
+			&game->menu.width, &game->menu.width);
+	game->img.menu_exit = mlx_xpm_file_to_image(game->img.mlx, MENU_EXIT,
+			&game->menu.width, &game->menu.width);
 }
 
 void	init_images(t_game *game)
@@ -41,13 +51,17 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.width);
 	game->img.collectable = mlx_xpm_file_to_image(game->img.mlx, COLL,
 			&game->img.width, &game->img.width);
+	game->img.bonus = mlx_xpm_file_to_image(game->img.mlx, BONUS,
+			&game->img.width, &game->img.width);
 	game->img.player_w_coll = mlx_xpm_file_to_image(game->img.mlx,
 			PLAYER_W_COLL, &game->img.width, &game->img.width);
-	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
+	game->img.block = mlx_xpm_file_to_image(game->img.mlx, BLOCK,
+			&game->img.width, &game->img.width);
+	game->img.transport = mlx_xpm_file_to_image(game->img.mlx, TRANSPORT,
 			&game->img.width, &game->img.width);
 	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER,
 			&game->img.width, &game->img.width);
-	game->img.water = mlx_xpm_file_to_image(game->img.mlx, BLOCK,
+	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
 			&game->img.width, &game->img.width);
 	init_images2(game);
 }
@@ -60,10 +74,18 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.player);
 	mlx_destroy_image(game.img.mlx, game.img.player_w_coll);
 	mlx_destroy_image(game.img.mlx, game.img.collectable);
-	mlx_destroy_image(game.img.mlx, game.img.line);
-	mlx_destroy_image(game.img.mlx, game.img.water);
+	mlx_destroy_image(game.img.mlx, game.img.bonus);
 	mlx_destroy_image(game.img.mlx, game.img.block);
+	mlx_destroy_image(game.img.mlx, game.img.transport);
+	mlx_destroy_image(game.img.mlx, game.img.water);
+	mlx_destroy_image(game.img.mlx, game.img.line);
 	mlx_destroy_image(game.img.mlx, game.img.semi_line);
 	mlx_destroy_image(game.img.mlx, game.img.mov);
 	mlx_destroy_image(game.img.mlx, game.img.es);
+	mlx_destroy_image(game.img.mlx, game.img.win);
+	mlx_destroy_image(game.img.mlx, game.img.lose);
+	mlx_destroy_image(game.img.mlx, game.img.nbr);
+	mlx_destroy_image(game.img.mlx, game.img.menu_test);
+	mlx_destroy_image(game.img.mlx, game.img.menu_play);
+	mlx_destroy_image(game.img.mlx, game.img.menu_exit);
 }

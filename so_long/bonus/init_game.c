@@ -77,6 +77,7 @@ static int	get_height(char *path, t_game *game)
 
 void	init_game(char *path, t_game *game)
 {
+	init_game_stats(game);
 	game->map.fd = open(path, O_RDONLY);
 	if (game->map.fd < 0)
 		error_msg(MAP_RD_ERROR);

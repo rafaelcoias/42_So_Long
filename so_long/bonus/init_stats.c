@@ -12,6 +12,20 @@
 
 #include "../include/so_long.h"
 
+void	init_game_stats(t_game *game)
+{
+	game->p_i = 0;
+	game->p_j = 0;
+	game->has_coll = 0;
+	game->count_moves = 0;
+	game->bonus = 0;
+	game->end_game.win = 0;
+	game->bonus = 0;
+	game->menu.in_end = 0;
+	game->menu.in_menu = 0;
+	game->menu.in_game = 1;
+}
+
 void	init_all_stats(t_game *game, char *path)
 {
 	game->img.mlx = mlx_init();
@@ -20,4 +34,15 @@ void	init_all_stats(t_game *game, char *path)
 	game->p_j = 0;
 	game->has_coll = 0;
 	game->count_moves = 0;
+	game->map.count_ground = 0;
+	game->bonus = 0;
+	game->menu.width = 550;
+	game->menu.test = 1;
+	game->menu.play = 0;
+	game->menu.exit = 0;
+	game->end_game.width = 550;
+	game->end_game.win = 0;
+	game->menu.in_end = 0;
+	game->menu.in_menu = 1;
+	game->menu.in_game = 0;
 }
