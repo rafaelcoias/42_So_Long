@@ -54,6 +54,14 @@ static int	can_move(t_game *game, int key)
 	return (can_move_2(game, key));
 }
 
+static void	write_moves(int nbr)
+{
+	ft_printf("Number of steps: ");
+	ft_printf(YELLOW);
+	ft_printf("%i\n", nbr);
+	ft_printf(RESET);
+}
+
 void	move_player(t_game *game, int key)
 {
 	if (!can_move(game, key))
@@ -68,6 +76,7 @@ void	move_player(t_game *game, int key)
 	else if (key == W || key == UP)
 		game->p_i--;
 	game->count_moves++;
+	write_moves(game->count_moves);
 	if (game->map.map[game->p_i][game->p_j] == 'E')
 		end_game(game, 1);
 	else if (game->map.map[game->p_i][game->p_j] == 'A')

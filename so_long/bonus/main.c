@@ -20,7 +20,10 @@
 // 2 - Os loops não têm uma janela válida/ativada porque foi destruida
 // SOLUCAO : usar sempre a mesma *window e o mesmo *mlx
 //
-// 3 - 
+// SOL:  mlx_loop_end(game->mlx)
+
+//ADD : close program when click window red cross 
+//ADD : animation in collectable and in water
 
 #include "../include/so_long.h"
 

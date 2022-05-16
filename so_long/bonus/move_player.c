@@ -15,19 +15,19 @@
 static int	can_move_2(t_game *game, int key)
 {
 	if (key == RIGHT && (game->map.map[game->p_i][game->p_j + 1] == '1'
-		|| (game->map.map[game->p_i][game->p_j + 1] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j + 1])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == LEFT && (game->map.map[game->p_i][game->p_j - 1] == '1'
-		|| (game->map.map[game->p_i][game->p_j - 1] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j - 1])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == DOWN && (game->map.map[game->p_i + 1][game->p_j] == '1'
-		|| (game->map.map[game->p_i + 1][game->p_j] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i + 1][game->p_j])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == UP && (game->map.map[game->p_i - 1][game->p_j] == '1'
-		|| (game->map.map[game->p_i - 1][game->p_j] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i - 1][game->p_j])
 		&& game->has_coll == 0)))
 		return (0);
 	return (1);
@@ -36,19 +36,19 @@ static int	can_move_2(t_game *game, int key)
 static int	can_move(t_game *game, int key)
 {
 	if (key == D && (game->map.map[game->p_i][game->p_j + 1] == '1'
-		|| (game->map.map[game->p_i][game->p_j + 1] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j + 1])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == A && (game->map.map[game->p_i][game->p_j - 1] == '1'
-		|| (game->map.map[game->p_i][game->p_j - 1] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j - 1])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == S && (game->map.map[game->p_i + 1][game->p_j] == '1'
-		|| (game->map.map[game->p_i + 1][game->p_j] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i + 1][game->p_j])
 		&& game->has_coll == 0)))
 		return (0);
 	else if (key == W && (game->map.map[game->p_i - 1][game->p_j] == '1'
-		|| (game->map.map[game->p_i - 1][game->p_j] == 'B'
+		|| (ft_strchr("BE", game->map.map[game->p_i - 1][game->p_j])
 		&& game->has_coll == 0)))
 		return (0);
 	return (can_move_2(game, key));

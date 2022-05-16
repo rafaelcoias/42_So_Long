@@ -37,11 +37,14 @@
 /* ERRORS */
 
 # define FILE_ERROR "Argument is not a .ber file.\n"
+# define FILE_NAME "The .ber file must have a name."
+# define OPEN_FILE_ERROR "Could not find file path / path does not exists.\n"
 # define MAP_RD_ERROR "Could not open map.\n"
 # define MAP_SHP_ERROR "Map has not a valid shape.\n"
 # define MAP_ERROR "Map must have edges (walls).\n"
 # define SMALL_MAP_ERROR "Map is too small.\n"
-# define CHAR_ERROR "There should be at least 1 item, 1 player and 1 exit.\n"
+# define CHAR_ERROR "There should be at least 1 item, 1 exit and only 1 player.\n"
+# define UNKNOWN_CHAR "Unknown char in map.\n"
 # define PLAYER_ERROR "There should only be one player.\n"
 # define MLX_ERROR "Could not open mlx.\n"
 # define WIN_ERROR "Could not find window.\n"

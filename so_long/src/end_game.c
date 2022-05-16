@@ -5,7 +5,7 @@ void	end_game(t_game *game, int win)
 	if (win)
 	{
         ft_printf(GREEN);
-        ft_printf("<<<<< YOU WON >>>>>\n\n");
+        ft_printf("\n<<<<< YOU WON >>>>>\n\n");
         ft_printf(RESET);
         ft_printf("Total of steps : ");
         ft_printf(YELLOW);
@@ -15,7 +15,7 @@ void	end_game(t_game *game, int win)
     else
     {
         ft_printf(RED);
-        ft_printf("<<<<< GAME OVER >>>>>\n\n");
+        ft_printf("\n<<<<< GAME OVER >>>>>\n\n");
         ft_printf(RESET);
         ft_printf("Total of steps : ");
         ft_printf(YELLOW);

@@ -27,7 +27,7 @@ static int	check_is_rect(char *path)
 		error_msg(SMALL_MAP_ERROR);
 	while (line)
 	{
-		if (ft_strlen(line) != len)
+		if (ft_strlen(line) != len && line[0] != '\n')
 			return (0);
 		free(line);
 		line = get_next_line(fd);
@@ -53,6 +53,8 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 	}
 	else if (line[coll] == '0')
 		game->map.count_ground++;
+	if (!ft_strchr("10CEPBST\n", line[coll]))
+		error_msg(UNKNOWN_CHAR);
 }
 
 static void	check_chars(t_game *game, char *path)
@@ -71,7 +73,7 @@ static void	check_chars(t_game *game, char *path)
 	while (line)
 	{
 		coll = -1;
-		while (line[++coll + 1])
+		while (line[++coll + 1] && line[0] != '\n')
 			confirm_chars(game, line, row, coll);
 		row++;
 		free(line);
@@ -87,7 +89,7 @@ void	check_map(t_game *game)
 	if (!check_is_rect(game->map.path))
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);
-	if (!game->map.count_exit || !game->map.count_col || !game->map.count_pla)
+	if (!game->map.count_exit || !game->map.count_col || game->map.count_pla != 1)
 		error_msg(CHAR_ERROR);
 	if (game->map.count_pla > 1)
 		error_msg(PLAYER_ERROR);
@@ -107,5 +109,9 @@ void	check_ber(char *path)
 			|| path[len - 2] != 'e' || path[len - 1] != 'r' || fd < 0)
 			error_msg(FILE_ERROR);
 	}
+	if (len == 4)
+		error_msg(FILE_NAME);
+	if (access(path, F_OK) == -1)
+		error_msg(OPEN_FILE_ERROR);
 	close(fd);
 }

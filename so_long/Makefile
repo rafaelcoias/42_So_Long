@@ -2,7 +2,7 @@
 
 NAME = so_long
 
-BONUS = so_long_bonus
+BONUS = so_long
 
 ########## 		  SOURCES 		##########
 
