@@ -32,7 +32,7 @@
 # define ESCAPE 53
 # define ENTER 36
 # define PIXEL_SIZE 50
-# define MAP_TEST "include/maps/mapa.ber"
+# define MAP_TEST "include/maps/tutorial.ber"
 
 /* ERRORS */
 
