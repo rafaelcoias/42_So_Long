@@ -23,11 +23,9 @@ static int	check_is_rect(char *path)
 		error_msg(MAP_RD_ERROR);
 	line = get_next_line(fd);
 	len = ft_strlen(line);
-	if (len < 5)
-		error_msg(SMALL_MAP_ERROR);
 	while (line)
 	{
-		if (ft_strlen(line) != len && line[0] != '\n')
+		if (ft_strlen(line) != len)
 			return (0);
 		free(line);
 		line = get_next_line(fd);
@@ -74,7 +72,7 @@ void	check_chars(t_game *game, char *path)
 	while (line)
 	{
 		coll = -1;
-		while (line[++coll + 1] && line[0] != '\n')
+		while (line[++coll + 1])
 			confirm_chars(game, line, row, coll);
 		row++;
 		free(line);
@@ -87,6 +85,7 @@ void	check_map(t_game *game)
 	game->map.count_exit = 0;
 	game->map.count_col = 0;
 	game->map.count_pla = 0;
+	game->map.height = get_height(game->map.path, game);
 	if (!check_is_rect(game->map.path))
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);
@@ -104,16 +103,15 @@ void	check_ber(char *path)
 
 	len = ft_strlen(path);
 	fd = open(path, O_DIRECTORY);
+	if (fd >= 0)
+		error_msg(DIR_ERROR);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		fd = open(path, O_RDONLY);
-		if (path[len - 4] != '.' || path[len - 3] != 'b'
-			|| path[len - 2] != 'e' || path[len - 1] != 'r' || fd < 0)
-			error_msg(FILE_ERROR);
-	}
-	if (len == 4)
+		error_msg(PATH_ERROR);
+	if (len < 4 || path[len - 4] != '.' || path[len - 3] != 'b'
+		|| path[len - 2] != 'e' || path[len - 1] != 'r')
+		error_msg(FILE_ERROR);
+	if (len == 4 || path[len - 5] == '/')
 		error_msg(FILE_NAME);
-	if (access(path, F_OK) == -1)
-		error_msg(OPEN_FILE_ERROR);
 	close(fd);
 }

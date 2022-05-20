@@ -23,8 +23,6 @@ static int	check_is_rect(char *path)
 		error_msg(MAP_RD_ERROR);
 	line = get_next_line(fd);
 	len = ft_strlen(line);
-	if (len < 5)
-		error_msg(SMALL_MAP_ERROR);
 	while (line)
 	{
 		if (ft_strlen(line) != len && line[0] != '\n')
@@ -40,7 +38,7 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 	if ((row == 0 || row == game->map.height - 1
 			|| coll == 0 || coll == game->map.width - 1))
 		if (line[coll] != '1')
-			error_msg(MAP_ERROR);
+			error_msg(EDGES_ERROR);
 	if (line[coll] == 'E')
 		game->map.count_exit++;
 	else if (line[coll] == 'C')
@@ -57,7 +55,7 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 		error_msg(UNKNOWN_CHAR);
 }
 
-static void	check_chars(t_game *game, char *path)
+void	check_chars(t_game *game, char *path)
 {
 	int		row;
 	int		coll;
@@ -113,6 +111,6 @@ void	check_ber(char *path)
 	if (len == 4)
 		error_msg(FILE_NAME);
 	if (access(path, F_OK) == -1)
-		error_msg(OPEN_FILE_ERROR);
+		error_msg(PATH_ERROR);
 	close(fd);
 }

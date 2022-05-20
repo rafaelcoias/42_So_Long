@@ -54,3 +54,31 @@ void	init_end_game_window(t_game *game)
 	free(game->end_game.window);
 	error_msg(WIN_ERROR);
 }
+
+int	click_to_exit_game(t_game *game)
+{
+	delete_images(*game);
+	if (game->mlx)
+	{
+		mlx_destroy_window(game->mlx, game->window);
+		free(game->mlx);
+	}
+	else
+	{
+		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
+		free(game->mlx);
+	}
+	free(game->img.mlx);
+	if (game->map.map)
+		free_map(game->map.map);
+	exit(0);
+}
+
+int	click_to_exit_menu(t_game *game)
+{
+	mlx_destroy_window(game->menu.mlx, game->menu.window);
+	delete_images(*game);
+	free(game->menu.mlx);
+	free(game->img.mlx);
+	exit(0);
+}

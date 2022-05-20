@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   do_animations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 12:08:28 by rade-sar          #+#    #+#             */
-/*   Updated: 2021/10/26 12:09:30 by rade-sar         ###   ########.fr       */
+/*   Created: 2022/05/20 21:21:05 by rade-sar          #+#    #+#             */
+/*   Updated: 2022/05/20 23:24:03 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/so_long.h"
 
-size_t	ft_strlen(const char *str)
+void	do_death_animation(t_game *game)
 {
-	int	i;
+	(void)game;
+}
 
-	i = 0;
-	while (str && str[i] != '\0')
-		i++;
-	return (i);
+void	do_water_animation(t_game *game)
+{
+	(void)game;
 }

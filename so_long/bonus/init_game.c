@@ -65,7 +65,7 @@ static void	init_map(t_game *game)
 	game->map.map[row] = NULL;
 }
 
-static int	get_height(char *path, t_game *game)
+int	get_height(char *path, t_game *game)
 {
 	int		fd;
 	int		count;
@@ -87,12 +87,9 @@ static int	get_height(char *path, t_game *game)
 	return (count);
 }
 
-
-
 void	init_game(char *path, t_game *game)
 {
 	init_game_stats(game);
-	check_chars(game, path);
 	game->map.fd = open(path, O_RDONLY);
 	if (game->map.fd < 0)
 		error_msg(MAP_RD_ERROR);
@@ -101,9 +98,9 @@ void	init_game(char *path, t_game *game)
 	if (!(game->map.map))
 		return ;
 	init_map(game);
+	check_chars(game, path);
 	game->width = game->map.width * PIXEL_SIZE;
 	game->height = game->map.height * PIXEL_SIZE + 25;
 	game->img.width = PIXEL_SIZE;
 	close(game->map.fd);
-	init_game_window(game);
 }

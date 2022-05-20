@@ -37,6 +37,8 @@ static void	init_images2(t_game *game)
 			&game->menu.width, &game->menu.width);
 	game->img.menu_exit = mlx_xpm_file_to_image(game->img.mlx, MENU_EXIT,
 			&game->menu.width, &game->menu.width);
+	game->img.nbr = mlx_xpm_file_to_image(game->img.mlx, NBR_PATH,
+			&game->img.width, &game->img.width);
 }
 
 void	init_images(t_game *game)

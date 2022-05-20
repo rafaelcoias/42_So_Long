@@ -36,6 +36,7 @@ SRC_BONUS =	${BONUS_PATH}main.c			\
 		${BONUS_PATH}do_menu_window.c	\
 		${BONUS_PATH}put_images.c		\
 		${BONUS_PATH}init_stats.c		\
+		${BONUS_PATH}do_animations.c	\
 
 ########## 		  INCLUDES 		##########
 
@@ -85,8 +86,6 @@ CREATE_PROJ_MSG = @echo "\n<========== $(GREEN)$(NAME) created$(RESET) =========
 CREATE_BONUS_MSG = @echo "\n<========== $(GREEN)$(BONUS) created$(RESET) ==========>\n"
 
 REMOVED_MSG = @echo "\n<========== $(RED)$(NAME) removed$(RESET) ==========>\n"
-
-NORM_LIBFT_MSG = @echo "\n<========== $(YELLOW)Norm $(LIBFT)$(RESET) ==========>\n"
 
 NORM_PROJ_MSG = @echo "\n<========== $(YELLOW)Norm $(NAME)$(RESET) ==========>\n"
 

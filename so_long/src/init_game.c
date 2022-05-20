@@ -54,7 +54,7 @@ static void	init_map(t_game *game)
 	game->map.map[row] = NULL;
 }
 
-static int	get_height(char *path, t_game *game)
+int	get_height(char *path, t_game *game)
 {
 	int		fd;
 	int		count;

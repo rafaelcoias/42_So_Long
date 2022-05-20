@@ -19,15 +19,16 @@ static void	put_nbr(t_game *game, int w, int nbr)
 	char	*path;
 
 	i = -1;
-	str = malloc(sizeof(char) * 28);
+	str = malloc(sizeof(char) * 29);
 	path = NBR_PATH;
 	while (path[++i])
 		str[i] = path[i];
+	str[i] = '\0';
 	str[23] = nbr + '0';
 	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
 			&game->img.width, &game->img.width);
-	mlx_put_image_to_window(game->img.mlx, game->window, game->img.nbr, w, 0);
 	free(str);
+	mlx_put_image_to_window(game->img.mlx, game->window, game->img.nbr, w, 0);
 }
 
 static void	write_move_number(t_game *game, int width, int nbr)
@@ -63,14 +64,6 @@ static void	write_moves(t_game *game)
 	}
 }
 
-static int	check_window(t_game *game)
-{
-	if (!game->window)
-		error_msg(WIN_ERROR);
-	write_moves(game);
-	return (25);
-}
-
 int	render_images(t_game *game)
 {
 	int	xyij[4];
@@ -78,8 +71,10 @@ int	render_images(t_game *game)
 	if (!game->mlx || !game->menu.in_game)
 		return (0);
 	xyij[0] = 0;
-	xyij[1] = check_window(game);
+	xyij[1] = 25;
 	xyij[2] = -1;
+	write_moves(game);
+	do_water_animation(game);
 	while (++xyij[2] < game->map.height)
 	{
 		xyij[3] = -1;

@@ -37,12 +37,12 @@
 /* ERRORS */
 
 # define FILE_ERROR "Argument is not a .ber file.\n"
-# define FILE_NAME "The .ber file must have a name."
-# define OPEN_FILE_ERROR "Could not find file path / path does not exists.\n"
+# define DIR_ERROR "Argument is a directory, must be a .ber file\n"
+# define FILE_NAME "The .ber file must have a name.\n"
+# define PATH_ERROR "Could not find file path / path does not exists.\n"
 # define MAP_RD_ERROR "Could not open map.\n"
 # define MAP_SHP_ERROR "Map has not a valid shape.\n"
 # define EDGES_ERROR "Map must have edges (walls).\n"
-# define SMALL_MAP_ERROR "Map is too small.\n"
 # define CHAR_ERROR "Map must have at least 1 item, 1 exit & only 1 player.\n"
 # define UNKNOWN_CHAR "Unknown char in map.\n"
 # define PLAYER_ERROR "There should only be one player.\n"
@@ -136,10 +136,12 @@ void		init_game(char *path, t_game *game);
 void		init_menu_window(t_game *game);
 void		init_game_window(t_game *game);
 void		init_end_game_window(t_game *game);
+int			click_to_exit(t_game *game);
 
 /* CHECK FUNCTIONS */
 
 int			error_msg(char *str);
+int			get_height(char *path, t_game *game);
 void		check_ber(char *path);
 void		check_map(t_game *game);
 void		check_chars(t_game *game, char *path);
@@ -150,6 +152,8 @@ int			render_images(t_game *game);
 void		init_images(t_game *game);
 void		put_image(t_game *game, int xyij[4]);
 void		delete_images(t_game game);
+void		do_death_animation(t_game *game);
+void		do_water_animation(t_game *game);
 
 /* GAME FUNCTIONS */
 
@@ -158,8 +162,10 @@ void		do_game(t_game *game);
 void		move_player(t_game *game, int key);
 void		end_game(t_game *game, int win);
 
-/* FREE MAP */
+/* EXIT FUNCTIONS */
 
+int			click_to_exit_game(t_game *game);
+int			click_to_exit_menu(t_game *game);
 void		free_map(char **map);
 
 #endif

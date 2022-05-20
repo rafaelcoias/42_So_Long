@@ -25,6 +25,11 @@ static int	handle_keypress(int key, t_game *game)
 	if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->mlx, game->window);
+		delete_images(*game);
+		free(game->mlx);
+		free(game->img.mlx);
+		if (game->map.map)
+			free_map(game->map.map);
 		exit(0);
 	}
 	else if (check_arrows(key))
@@ -36,5 +41,6 @@ void	do_game(t_game *game)
 {
 	mlx_loop_hook(game->mlx, &render_images, game);
 	mlx_hook(game->window, 02, 0, &handle_keypress, game);
+	mlx_hook(game->window, 17, 0, click_to_exit_game, game);
 	mlx_loop(game->mlx);
 }
