@@ -14,7 +14,8 @@
 
 static int	check_arrows(int key)
 {
-	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
+	if (key == UP || key == DOWN || key == RIGHT || key == LEFT
+		|| key == W || key == S || key == D || key == A)
 		return (1);
 	return (0);
 }
@@ -26,7 +27,7 @@ static int	handle_keypress(int key, t_game *game)
 		mlx_destroy_window(game->mlx, game->window);
 		exit(0);
 	}
-	else if (ft_strchr("wasd", key) || check_arrows(key))
+	else if (check_arrows(key))
 		move_player(game, key);
 	return (1);
 }

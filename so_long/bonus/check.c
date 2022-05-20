@@ -40,7 +40,7 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 	if ((row == 0 || row == game->map.height - 1
 			|| coll == 0 || coll == game->map.width - 1))
 		if (line[coll] != '1')
-			error_msg(MAP_ERROR);
+			error_msg(EDGES_ERROR);
 	if (line[coll] == 'E')
 		game->map.count_exit++;
 	else if (line[coll] == 'C')
@@ -51,13 +51,13 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 		game->p_j = coll;
 		game->map.count_pla++;
 	}
-	else if (line[coll] == '0')
+	else if (line[coll] != '1')
 		game->map.count_ground++;
 	if (!ft_strchr("10CEPBST\n", line[coll]))
 		error_msg(UNKNOWN_CHAR);
 }
 
-static void	check_chars(t_game *game, char *path)
+void	check_chars(t_game *game, char *path)
 {
 	int		row;
 	int		coll;
@@ -66,6 +66,7 @@ static void	check_chars(t_game *game, char *path)
 
 	row = 0;
 	coll = -1;
+	game->map.count_col = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_msg(MAP_RD_ERROR);
@@ -89,7 +90,8 @@ void	check_map(t_game *game)
 	if (!check_is_rect(game->map.path))
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);
-	if (!game->map.count_exit || !game->map.count_col || game->map.count_pla != 1)
+	if (!game->map.count_exit || !game->map.count_col
+		|| game->map.count_pla != 1)
 		error_msg(CHAR_ERROR);
 	if (game->map.count_pla > 1)
 		error_msg(PLAYER_ERROR);

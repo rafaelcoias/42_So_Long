@@ -2,6 +2,8 @@
 
 NAME = so_long
 
+BONUS = so_long_bonus
+
 ########## 		  SOURCES 		##########
 
 SRC_PATH = ./src/
@@ -98,7 +100,7 @@ ${NAME}: ${OBJ}
 
 ${BONUS}: ${OBJ_B}
 	${MAKE_LIBFT} -s
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ_B) -L $(LIBFT_PATH) -lft
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(BONUS) $(OBJ_B) -L $(LIBFT_PATH) -lft
 
 ########## 		   RULES 		##########
 
@@ -110,11 +112,11 @@ bonus: ${BONUS}
 
 clean:
 	${CLEAN_LIBFT}
-	${RM} ${OBJ}
+	${RM} ${OBJ} ${OBJ_B}
 
 fclean: clean 
 	${FCLEAN_LIBFT}
-	${RM} ${NAME}
+	${RM} ${NAME} ${BONUS}
 	${REMOVED_MSG}
 	
 

@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-static void	put_nbr(t_game *game, int width, int nbr)
+static void	put_nbr(t_game *game, int w, int nbr)
 {
 	int		i;
 	char	*str;
@@ -25,8 +25,8 @@ static void	put_nbr(t_game *game, int width, int nbr)
 		str[i] = path[i];
 	str[23] = nbr + '0';
 	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
-			&game->img.width, &game->img.height);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.nbr, width, 0);
+			&game->img.width, &game->img.width);
+	mlx_put_image_to_window(game->img.mlx, game->window, game->img.nbr, w, 0);
 	free(str);
 }
 
@@ -84,10 +84,8 @@ int	render_images(t_game *game)
 	{
 		xyij[3] = -1;
 		xyij[0] = 0;
-		while (++x[3] < game->map.width)
+		while (++xyij[3] < game->map.width)
 		{
-			xyij[0] = width;
-			xyij[1] = height;
 			put_image(game, xyij);
 			xyij[0] += PIXEL_SIZE;
 		}

@@ -52,10 +52,7 @@ static void	handle_keypress2(int key, t_game *game)
 	if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
-			delete_images(*game);
-		free(game->menu.mlx);
-		if (game->map.map)
-			free_map(game->map.map);
+		game->menu.window = NULL;
 		exit(0);
 	}
 	check_arrows(game, key);
@@ -72,6 +69,8 @@ static void	handle_keypress2(int key, t_game *game)
 
 static int	handle_keypress(int key, t_game *game)
 {
+	if (!game->menu.mlx || !game->menu.in_menu)
+		return (0);
 	if (key == ENTER && game->menu.exit)
 	{
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
@@ -98,7 +97,20 @@ static int	handle_keypress(int key, t_game *game)
 
 void	do_menu_window(t_game *game)
 {
-	init_menu_window(game);
+	if (game->menu.in_end)
+	{
+		init_menu_stats(game);
+		game->menu.test = 1;
+		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
+		game->menu.in_end = 0;
+		game->menu.in_menu = 1;
+		game->menu.in_game = 0;
+		if (game->map.map)
+			free_map(game->map.map);
+		init_menu_window(game);
+	}
+	else
+		init_menu_window(game);
 	mlx_put_image_to_window(game->menu.mlx, game->menu.window,
 		game->img.menu_test, 0, 0);
 	mlx_hook(game->menu.window, 02, 0, &handle_keypress, game);

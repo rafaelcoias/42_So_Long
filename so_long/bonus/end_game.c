@@ -33,9 +33,8 @@ static void	put_nbr(t_game *game, int width, int h, int nbr)
 
 static void	write_score(t_game *game, int w, int h, int score)
 {
-	printf("%i\n", score);
 	if (score < 10)
-		put_nbr(game, w, h, 0);
+		put_nbr(game, w, h, score);
 	else
 	{
 		write_score(game, w - 30, h, score / 10);
@@ -47,7 +46,7 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 {
 	int	score;
 
-	score = (game->map.count_ground / game->count_moves) * 1333;
+	score = (game->count_moves * 33) + game->bonus;
 	if (nbr < 10)
 	{
 		put_nbr(game, w, h, 0);
@@ -58,24 +57,24 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 		put_nbr(game, w, h, nbr / 10);
 		put_nbr(game, w + 25, h, nbr % 10);
 	}
-	if (game->end_game.win)
+	if (score < 100)
+		write_score(game, 235, 390, score);
+	else if (score < 1000)
+		write_score(game, 265, 390, score);
+	else
 		write_score(game, 295, 390, score);
 }
 
 static int	handle_keypress(int key, t_game *game)
 {
-	if (key == ESCAPE)
+	if (!game->end_game.mlx || !game->menu.in_end)
+		return (0);
+	if (key == ENTER)
+		do_menu_window(game);
+	else if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
-		game->menu.in_end = 0;
-		game->menu.in_menu = 1;
-		game->menu.in_game = 0;
-		free(game->mlx);
-		if (game->map.map)
-			free_map(game->map.map);
-		init_menu_window(game);
-		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
-			game->img.menu_test, 0, 0);
+		exit(0);
 	}
 	return (1);
 }

@@ -16,19 +16,19 @@ static int	can_move_2(t_game *game, int key)
 {
 	if (key == RIGHT && (game->map.map[game->p_i][game->p_j + 1] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j + 1])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == LEFT && (game->map.map[game->p_i][game->p_j - 1] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j - 1])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == DOWN && (game->map.map[game->p_i + 1][game->p_j] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i + 1][game->p_j])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == UP && (game->map.map[game->p_i - 1][game->p_j] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i - 1][game->p_j])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	return (1);
 }
@@ -37,19 +37,19 @@ static int	can_move(t_game *game, int key)
 {
 	if (key == D && (game->map.map[game->p_i][game->p_j + 1] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j + 1])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == A && (game->map.map[game->p_i][game->p_j - 1] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i][game->p_j - 1])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == S && (game->map.map[game->p_i + 1][game->p_j] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i + 1][game->p_j])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	else if (key == W && (game->map.map[game->p_i - 1][game->p_j] == '1'
 		|| (ft_strchr("BE", game->map.map[game->p_i - 1][game->p_j])
-		&& game->has_coll == 0)))
+		&& game->has_coll != game->map.count_col)))
 		return (0);
 	return (can_move_2(game, key));
 }
@@ -61,24 +61,37 @@ static void	check_transport(t_game *game)
 
 	i = -1;
 	j = -1;
-	if (game->map.map[game->p_i][game->p_j] == 'T')
+	if (game->map.map[game->p_i][game->p_j] != 'T')
+		return ;
+	while (++i < game->map.height)
 	{
-		while (++i < game->map.height)
+		j = -1;
+		while (++j < game->map.width)
 		{
-			j = -1;
-			while (++j < game->map.width)
+			if (game->map.map[i][j] == 'T' && (i != game->p_i
+					|| j != game->p_j))
 			{
-				if (game->map.map[i][j] == 'T' && i != game->p_i
-						&& j != game->p_j)
-				{
-					game->map.map[game->p_i][game->p_j] = 'A';
-					game->p_i = i;
-					game->p_j = j;
-					return ;
-				}
+				game->map.map[game->p_i][game->p_j] = 'A';
+				game->p_i = i;
+				game->p_j = j;
+				return ;
 			}
 		}
 	}
+}
+
+static int	check_death(t_game *game)
+{
+	if ((game->map.map[game->p_i][game->p_j + 1] == 'A'
+		|| game->map.map[game->p_i][game->p_j + 1] == '1')
+		&& (game->map.map[game->p_i][game->p_j - 1] == 'A'
+		|| game->map.map[game->p_i][game->p_j - 1] == '1')
+		&& (game->map.map[game->p_i + 1][game->p_j] == 'A'
+		|| game->map.map[game->p_i + 1][game->p_j] == '1')
+		&& (game->map.map[game->p_i - 1][game->p_j] == 'A'
+		|| game->map.map[game->p_i - 1][game->p_j] == '1'))
+		return (1);
+	return (0);
 }
 
 void	move_player(t_game *game, int key)
@@ -100,9 +113,11 @@ void	move_player(t_game *game, int key)
 	else if (game->map.map[game->p_i][game->p_j] == 'A')
 		end_game(game, 0);
 	else if (game->map.map[game->p_i][game->p_j] == 'C')
-		game->has_coll = 1;
+		game->has_coll++;
 	else if (game->map.map[game->p_i][game->p_j] == 'S')
 		game->bonus += 575;
 	check_transport(game);
 	game->map.map[game->p_i][game->p_j] = 'P';
+	if (check_death(game))
+		end_game(game, 0);
 }

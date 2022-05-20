@@ -51,7 +51,7 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 		game->p_j = coll;
 		game->map.count_pla++;
 	}
-	else if (line[coll] == '0')
+	else if (line[coll] != '1')
 		game->map.count_ground++;
 	if (!ft_strchr("10CEP\n", line[coll]))
 		error_msg(UNKNOWN_CHAR);
@@ -89,7 +89,8 @@ void	check_map(t_game *game)
 	if (!check_is_rect(game->map.path))
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);
-	if (!game->map.count_exit || !game->map.count_col || game->map.count_pla != 1)
+	if (!game->map.count_exit || !game->map.count_col
+		|| game->map.count_pla != 1)
 		error_msg(CHAR_ERROR);
 	if (game->map.count_pla > 1)
 		error_msg(PLAYER_ERROR);

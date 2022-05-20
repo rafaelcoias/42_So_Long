@@ -41,9 +41,9 @@
 # define OPEN_FILE_ERROR "Could not find file path / path does not exists.\n"
 # define MAP_RD_ERROR "Could not open map.\n"
 # define MAP_SHP_ERROR "Map has not a valid shape.\n"
-# define MAP_ERROR "Map must have edges (walls).\n"
+# define EDGES_ERROR "Map must have edges (walls).\n"
 # define SMALL_MAP_ERROR "Map is too small.\n"
-# define CHAR_ERROR "There should be at least 1 item, 1 exit and only 1 player.\n"
+# define CHAR_ERROR "Map must have at least 1 item, 1 exit & only 1 player.\n"
 # define UNKNOWN_CHAR "Unknown char in map.\n"
 # define PLAYER_ERROR "There should only be one player.\n"
 # define MLX_ERROR "Could not open mlx.\n"
@@ -142,6 +142,7 @@ void		init_end_game_window(t_game *game);
 int			error_msg(char *str);
 void		check_ber(char *path);
 void		check_map(t_game *game);
+void		check_chars(t_game *game, char *path);
 
 /* IMAGES FUNCTIONS */
 
