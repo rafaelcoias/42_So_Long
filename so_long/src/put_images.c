@@ -41,7 +41,7 @@ void	put_image(t_game *game, int xyij[4])
 	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll == 0)
 		mlx_put_image_to_window(game->mlx, game->window, game->img.player,
 			xyij[0], xyij[1]);
-	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll == 1)
+	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll != 0)
 		mlx_put_image_to_window(game->mlx, game->window,
 			game->img.player_w_coll, xyij[0], xyij[1]);
 	put_image2(game, xyij);

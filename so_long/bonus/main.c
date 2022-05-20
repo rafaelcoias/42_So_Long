@@ -38,8 +38,4 @@ int	main(int argc, char **argv)
 	check_map(&game);
 	init_images(&game);
 	do_menu_window(&game);
-	delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
 }

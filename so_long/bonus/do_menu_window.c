@@ -52,6 +52,10 @@ static void	handle_keypress2(int key, t_game *game)
 	if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
+			delete_images(*game);
+		free(game->menu.mlx);
+		if (game->map.map)
+			free_map(game->map.map);
 		exit(0);
 	}
 	check_arrows(game, key);

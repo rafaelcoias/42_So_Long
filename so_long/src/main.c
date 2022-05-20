@@ -22,11 +22,7 @@ int	main(int argc, char **argv)
 	check_ber(argv[1]);
 	check_map(&game);
 	init_images(&game);
-	init_game(argv[1], game);
-	render_images(game);
-	do_game(game);
-	delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
+	init_game(argv[1], &game);
+	render_images(&game);
+	do_game(&game);
 }

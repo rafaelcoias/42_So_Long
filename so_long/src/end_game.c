@@ -9,8 +9,6 @@ void	end_game(t_game *game, int win)
         ft_printf(RESET);
         ft_printf("Total of steps : ");
         ft_printf(YELLOW);
-        ft_printf("%i", game->count_moves);
-        ft_printf(RESET);
     }
     else
     {
@@ -19,11 +17,12 @@ void	end_game(t_game *game, int win)
         ft_printf(RESET);
         ft_printf("Total of steps : ");
         ft_printf(YELLOW);
-        ft_printf("%i", game->count_moves);
-        ft_printf(RESET);
     }
-    delete_images(game);
-	free(game.mlx);
-	if (game.map.map)
-		free_map(game.map.map);
+    ft_printf("%i\n", game->count_moves);
+    ft_printf(RESET);
+    delete_images(*game);
+	free(game->mlx);
+	if (game->map.map)
+		free_map(game->map.map);
+    exit(0);
 }

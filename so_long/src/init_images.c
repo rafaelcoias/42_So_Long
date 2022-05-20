@@ -47,7 +47,7 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.width);
 	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER,
 			&game->img.width, &game->img.width);
-	game->img.water = mlx_xpm_file_to_image(game->img.mlx, BLOCK,
+	game->img.block = mlx_xpm_file_to_image(game->img.mlx, BLOCK,
 			&game->img.width, &game->img.width);
 	init_images2(game);
 }

@@ -25,7 +25,7 @@ static void	put_nbr(t_game *game, int width, int h, int nbr)
 		str[i] = path[i];
 	str[27] = nbr + '0';
 	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
-			&game->img.width, &game->img.height);
+			&game->img.width, &game->img.width);
 	mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
 		game->img.nbr, width, h);
 	free(str);
@@ -70,6 +70,9 @@ static int	handle_keypress(int key, t_game *game)
 		game->menu.in_end = 0;
 		game->menu.in_menu = 1;
 		game->menu.in_game = 0;
+		free(game->mlx);
+		if (game->map.map)
+			free_map(game->map.map);
 		init_menu_window(game);
 		mlx_put_image_to_window(game->menu.mlx, game->menu.window,
 			game->img.menu_test, 0, 0);
