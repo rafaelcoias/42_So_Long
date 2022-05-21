@@ -47,7 +47,7 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 {
 	int	score;
 
-	score = (game->count_moves * 33) + game->bonus;
+	score = game->score + 500;
 	if (nbr < 10)
 	{
 		put_nbr(game, w, h, 0);

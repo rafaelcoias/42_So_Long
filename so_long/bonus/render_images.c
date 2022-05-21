@@ -12,57 +12,45 @@
 
 #include "../include/so_long.h"
 
-static void	put_nbr(t_game *game, int w, int nbr)
+static void	put_image2(t_game *game, int xyij[4])
 {
-	int		i;
-	char	*str;
-	char	*path;
-
-	i = -1;
-	str = malloc(sizeof(char) * 29);
-	path = NBR_PATH;
-	while (path[++i])
-		str[i] = path[i];
-	str[i] = '\0';
-	str[23] = nbr + '0';
-	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
-			&game->img.width, &game->img.width);
-	free(str);
-	mlx_put_image_to_window(game->img.mlx, game->window, game->img.nbr, w, 0);
+	if (game->map.map[xyij[2]][xyij[3]] == 'B')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.block,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'A')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.water,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'T')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.transport,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'S')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.bonus,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'E')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.exit,
+			xyij[0], xyij[1]);
 }
 
-static void	write_move_number(t_game *game, int width, int nbr)
+static void	put_image(t_game *game, int xyij[4])
 {
-	if (nbr < 10)
-	{
-		put_nbr(game, width, 0);
-		put_nbr(game, width + 15, game->count_moves);
-	}
-	else if (nbr < 100)
-	{
-		put_nbr(game, width, nbr / 10);
-		put_nbr(game, width + 15, nbr % 10);
-	}
+	if (game->map.map[xyij[2]][xyij[3]] == '1')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.wall,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == '0')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.back_ground,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'C')
+		mlx_put_image_to_window(game->mlx, game->window, game->img.collectable,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll == 0)
+		mlx_put_image_to_window(game->mlx, game->window, game->img.player,
+			xyij[0], xyij[1]);
+	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll != 0)
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->img.player_w_coll, xyij[0], xyij[1]);
+	put_image2(game, xyij);
 }
 
-static void	write_moves(t_game *game)
-{
-	int	width;
-
-	mlx_put_image_to_window(game->mlx, game->window, game->img.line, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.mov, 50, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.es, 100, 0);
-	write_move_number(game, 150, game->count_moves);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.semi_line,
-		180, 0);
-	width = 200;
-	while (width < game->width)
-	{
-		mlx_put_image_to_window(game->mlx, game->window, game->img.line,
-			width, 0);
-		width += PIXEL_SIZE;
-	}
-}
 
 int	render_images(t_game *game)
 {
@@ -74,6 +62,7 @@ int	render_images(t_game *game)
 	xyij[1] = 25;
 	xyij[2] = -1;
 	write_moves(game);
+	write_score(game);
 	do_water_animation(game);
 	while (++xyij[2] < game->map.height)
 	{

@@ -34,9 +34,9 @@ SRC_BONUS =	${BONUS_PATH}main.c			\
 		${BONUS_PATH}move_player.c		\
 		${BONUS_PATH}render_images.c	\
 		${BONUS_PATH}do_menu_window.c	\
-		${BONUS_PATH}put_images.c		\
 		${BONUS_PATH}init_stats.c		\
 		${BONUS_PATH}do_animations.c	\
+		${BONUS_PATH}write_in_game.c	\
 
 ########## 		  INCLUDES 		##########
 

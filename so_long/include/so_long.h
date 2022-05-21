@@ -95,7 +95,7 @@ typedef struct s_game
 	int		p_j;
 	int		has_coll;
 	int		count_moves;
-	int		bonus;
+	int		score;
 	t_menu	menu;
 	t_end	end_game;
 	t_map	map;
@@ -110,7 +110,6 @@ void		init_game(char *path, t_game *game);
 void		init_menu_window(t_game *game);
 void		init_game_window(t_game *game);
 void		init_end_game_window(t_game *game);
-int			click_to_exit(t_game *game);
 
 /* CHECK FUNCTIONS */
 
@@ -135,6 +134,11 @@ void		do_menu_window(t_game *game);
 void		do_game(t_game *game);
 void		move_player(t_game *game, int key);
 void		end_game(t_game *game, int win);
+
+/* WRITE FUNCTIONS */
+
+void		write_moves(t_game *game);
+void		write_score(t_game *game);
 
 /* EXIT FUNCTIONS */
 

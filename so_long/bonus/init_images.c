@@ -40,18 +40,18 @@ static void	init_images3(t_game *game)
 
 static void	init_images2(t_game *game)
 {
-	int	twenty;
 	int	t_five;
 	int	fivety;
 
-	twenty = 20;
 	t_five = 25;
 	fivety = 50;
-	game->img.semi_line = mlx_xpm_file_to_image(game->img.mlx, SEMI_LINE,
-			&twenty, &t_five);
 	game->img.mov = mlx_xpm_file_to_image(game->img.mlx, MOV,
 			&fivety, &t_five);
 	game->img.es = mlx_xpm_file_to_image(game->img.mlx, ES,
+			&fivety, &t_five);
+	game->img.sco = mlx_xpm_file_to_image(game->img.mlx, SCO,
+			&fivety, &t_five);
+	game->img.re = mlx_xpm_file_to_image(game->img.mlx, RE,
 			&fivety, &t_five);
 	game->img.win = mlx_xpm_file_to_image(game->img.mlx, WIN,
 			&game->menu.width, &game->menu.width);
@@ -86,11 +86,23 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.width);
 	game->img.transport = mlx_xpm_file_to_image(game->img.mlx, TRANSPORT,
 			&game->img.width, &game->img.width);
-	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER,
-			&game->img.width, &game->img.width);
 	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
 			&game->img.width, &game->img.width);
 	init_images2(game);
+}
+
+void	delete_images2(t_game game)
+{
+	mlx_destroy_image(game.img.mlx, game.img.death1);
+	mlx_destroy_image(game.img.mlx, game.img.death2);
+	mlx_destroy_image(game.img.mlx, game.img.death3);
+	mlx_destroy_image(game.img.mlx, game.img.death4);
+	mlx_destroy_image(game.img.mlx, game.img.death5);
+	mlx_destroy_image(game.img.mlx, game.img.water1);
+	mlx_destroy_image(game.img.mlx, game.img.water2);
+	mlx_destroy_image(game.img.mlx, game.img.water3);
+	mlx_destroy_image(game.img.mlx, game.img.water4);
+	mlx_destroy_image(game.img.mlx, game.img.water5);
 }
 
 void	delete_images(t_game game)
@@ -106,7 +118,6 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.transport);
 	mlx_destroy_image(game.img.mlx, game.img.water);
 	mlx_destroy_image(game.img.mlx, game.img.line);
-	mlx_destroy_image(game.img.mlx, game.img.semi_line);
 	mlx_destroy_image(game.img.mlx, game.img.mov);
 	mlx_destroy_image(game.img.mlx, game.img.es);
 	mlx_destroy_image(game.img.mlx, game.img.win);
@@ -115,4 +126,7 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.menu_test);
 	mlx_destroy_image(game.img.mlx, game.img.menu_play);
 	mlx_destroy_image(game.img.mlx, game.img.menu_exit);
+	mlx_destroy_image(game.img.mlx, game.img.sco);
+	mlx_destroy_image(game.img.mlx, game.img.re);
+	delete_images2(game);
 }

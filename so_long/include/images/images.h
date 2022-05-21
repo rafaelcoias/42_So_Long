@@ -12,7 +12,6 @@
 # define BONUS "include/images/game/bonus.xpm"
 # define BLOCK "include/images/game/block.xpm"
 # define TRANSPORT "include/images/game/transport.xpm"
-# define WATER "include/images/game/water.xpm"
 
 /* MENU IMAGES */
 
@@ -28,7 +27,6 @@
 /* NUMBERS IMAGES */
 
 # define LINE "include/images/game/line.xpm"
-# define SEMI_LINE "include/images/game/semi_line.xpm"
 # define MOV "include/images/game/MOV.xpm"
 # define ES "include/images/game/ES.xpm"
 # define SCO "include/images/game/SCO.xpm"
@@ -49,6 +47,8 @@
 # define WATER_4 "include/images/animations/water_4.xpm"
 # define WATER_5 "include/images/animations/water_5.xpm"
 
+/* IMAGES STRUCT */
+
 typedef struct s_img
 {
 	void	*mlx;
@@ -62,9 +62,7 @@ typedef struct s_img
 	void	*bonus;
 	void	*block;
 	void	*transport;
-	void	*water;
 	void	*line;
-	void	*semi_line;
 	void	*mov;
 	void	*es;
 	void	*win;
