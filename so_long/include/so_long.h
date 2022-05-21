@@ -32,6 +32,7 @@
 # define ESCAPE 53
 # define ENTER 36
 # define PIXEL_SIZE 50
+# define ANIM_TIME 5000
 # define MAP_TEST "include/maps/tutorial.ber"
 
 /* ERRORS */
@@ -83,6 +84,7 @@ typedef struct s_end
 	void	*window;
 	int		width;
 	int		win;
+	int		time_death;
 }	t_end;
 
 typedef struct s_game
@@ -96,6 +98,7 @@ typedef struct s_game
 	int		has_coll;
 	int		count_moves;
 	int		score;
+	int		time_water;
 	t_menu	menu;
 	t_end	end_game;
 	t_map	map;

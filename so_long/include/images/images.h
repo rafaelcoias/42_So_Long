@@ -71,16 +71,8 @@ typedef struct s_img
 	void	*menu_test;
 	void	*menu_play;
 	void	*menu_exit;
-    void    *water1;
-    void    *water2;
-    void    *water3;
-    void    *water4;
-    void    *water5;
-    void    *death1;
-    void    *death2;
-    void    *death3;
-    void    *death4;
-    void    *death5;
+    void    *water;
+    void    *death;
 }	t_img;
 
 #endif

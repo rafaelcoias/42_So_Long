@@ -91,8 +91,12 @@ static int	handle_keypress(int key, t_game *game)
 
 void	end_game(t_game *game, int win)
 {
-	if (!win)
+	while (!win && game->end_game.time_death < 5000)
+	{
 		do_death_animation(game);
+		game->end_game.time_death++;
+	}
+	game->end_game.time_death = 0;
 	game->end_game.win = win;
 	game->menu.in_end = 1;
 	game->menu.in_menu = 0;

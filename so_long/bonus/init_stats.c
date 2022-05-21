@@ -41,6 +41,8 @@ void	init_all_stats(t_game *game, char *path)
 	game->menu.exit = 0;
 	game->end_game.width = 550;
 	game->end_game.win = 0;
+	game->end_game.time_death = 0;
+	game->time_water = 0;
 	game->menu.in_end = 0;
 	game->menu.in_menu = 1;
 	game->menu.in_game = 0;
