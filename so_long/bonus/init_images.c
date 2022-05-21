@@ -12,6 +12,32 @@
 
 #include "../include/so_long.h"
 
+static void	init_images3(t_game *game)
+{
+	game->img.nbr = mlx_xpm_file_to_image(game->img.mlx, NBR_PATH,
+			&game->img.width, &game->img.width);
+	game->img.death1 = mlx_xpm_file_to_image(game->img.mlx, DEATH_1,
+			&game->img.width, &game->img.width);
+	game->img.death2 = mlx_xpm_file_to_image(game->img.mlx, DEATH_2,
+			&game->img.width, &game->img.width);
+	game->img.death3 = mlx_xpm_file_to_image(game->img.mlx, DEATH_3,
+			&game->img.width, &game->img.width);
+	game->img.death4 = mlx_xpm_file_to_image(game->img.mlx, DEATH_4,
+			&game->img.width, &game->img.width);
+	game->img.death5 = mlx_xpm_file_to_image(game->img.mlx, DEATH_5,
+			&game->img.width, &game->img.width);
+	game->img.water1 = mlx_xpm_file_to_image(game->img.mlx, WATER_1,
+			&game->img.width, &game->img.width);
+	game->img.water2 = mlx_xpm_file_to_image(game->img.mlx, WATER_2,
+			&game->img.width, &game->img.width);
+	game->img.water3 = mlx_xpm_file_to_image(game->img.mlx, WATER_3,
+			&game->img.width, &game->img.width);
+	game->img.water4 = mlx_xpm_file_to_image(game->img.mlx, WATER_4,
+			&game->img.width, &game->img.width);
+	game->img.water5 = mlx_xpm_file_to_image(game->img.mlx, WATER_5,
+			&game->img.width, &game->img.width);
+}
+
 static void	init_images2(t_game *game)
 {
 	int	twenty;
@@ -37,8 +63,7 @@ static void	init_images2(t_game *game)
 			&game->menu.width, &game->menu.width);
 	game->img.menu_exit = mlx_xpm_file_to_image(game->img.mlx, MENU_EXIT,
 			&game->menu.width, &game->menu.width);
-	game->img.nbr = mlx_xpm_file_to_image(game->img.mlx, NBR_PATH,
-			&game->img.width, &game->img.width);
+	init_images3(game);
 }
 
 void	init_images(t_game *game)

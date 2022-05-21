@@ -64,32 +64,6 @@ typedef struct s_map
 	int			count_ground;
 }	t_map;
 
-typedef struct s_img
-{
-	void	*mlx;
-	int		width;
-	void	*wall;
-	void	*exit;
-	void	*back_ground;
-	void	*player;
-	void	*player_w_coll;
-	void	*collectable;
-	void	*bonus;
-	void	*block;
-	void	*transport;
-	void	*water;
-	void	*line;
-	void	*semi_line;
-	void	*mov;
-	void	*es;
-	void	*win;
-	void	*lose;
-	void	*nbr;
-	void	*menu_test;
-	void	*menu_play;
-	void	*menu_exit;
-}	t_img;
-
 typedef struct s_menu
 {
 	void	*mlx;
