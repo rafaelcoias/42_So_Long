@@ -56,11 +56,11 @@ static void	write_moves_in_end(t_game *game, int w, int h, int nbr)
 		put_nbr(game, w + 25, h, nbr % 10);
 	}
 	if (game->score < 100)
-		write_score_in_end(game, 235, 390, game->score);
+		write_score_in_end(game, 245, 390, game->score);
 	else if (game->score < 1000)
-		write_score_in_end(game, 265, 390, game->score);
+		write_score_in_end(game, 275, 390, game->score);
 	else
-		write_score_in_end(game, 295, 390, game->score);
+		write_score_in_end(game, 305, 390, game->score);
 }
 
 static int	handle_keypress(int key, t_game *game)

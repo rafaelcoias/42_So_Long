@@ -87,5 +87,5 @@ void	write_score(t_game *game)
 		game->width - 200, 0);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.re,
 		game->width - 150, 0);
-	write_score_number(game, game->width - 55, game->score, 1);
+	write_score_number(game, game->width - 50, game->score, 1);
 }
