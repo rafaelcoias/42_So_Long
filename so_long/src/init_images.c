@@ -21,8 +21,6 @@ static void	init_images2(t_game *game)
 	twenty = 20;
 	t_five = 25;
 	fivety = 50;
-	game->img.semi_line = mlx_xpm_file_to_image(game->img.mlx, SEMI_LINE,
-			&twenty, &t_five);
 	game->img.mov = mlx_xpm_file_to_image(game->img.mlx, MOV,
 			&fivety, &t_five);
 	game->img.es = mlx_xpm_file_to_image(game->img.mlx, ES,
@@ -45,7 +43,7 @@ void	init_images(t_game *game)
 			PLAYER_W_COLL, &game->img.width, &game->img.width);
 	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
 			&game->img.width, &game->img.width);
-	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER,
+	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER_1,
 			&game->img.width, &game->img.width);
 	game->img.block = mlx_xpm_file_to_image(game->img.mlx, BLOCK,
 			&game->img.width, &game->img.width);
@@ -63,7 +61,6 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.line);
 	mlx_destroy_image(game.img.mlx, game.img.water);
 	mlx_destroy_image(game.img.mlx, game.img.block);
-	mlx_destroy_image(game.img.mlx, game.img.semi_line);
 	mlx_destroy_image(game.img.mlx, game.img.mov);
 	mlx_destroy_image(game.img.mlx, game.img.es);
 }

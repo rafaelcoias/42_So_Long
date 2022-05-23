@@ -90,7 +90,7 @@ void	check_map(t_game *game)
 		error_msg(MAP_SHP_ERROR);
 	check_chars(game, game->map.path);
 	if (!game->map.count_exit || !game->map.count_col
-		|| game->map.count_pla != 1)
+		|| !game->map.count_pla)
 		error_msg(CHAR_ERROR);
 	if (game->map.count_pla > 1)
 		error_msg(PLAYER_ERROR);

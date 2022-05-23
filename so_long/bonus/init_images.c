@@ -63,6 +63,8 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.width);
 	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
 			&game->img.width, &game->img.width);
+	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER_1,
+			&game->img.width, &game->img.width);
 	init_images2(game);
 }
 
@@ -89,6 +91,4 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.menu_exit);
 	mlx_destroy_image(game.img.mlx, game.img.sco);
 	mlx_destroy_image(game.img.mlx, game.img.re);
-	mlx_destroy_image(game.img.mlx, game.img.death);
-	mlx_destroy_image(game.img.mlx, game.img.water);
 }

@@ -85,6 +85,7 @@ typedef struct s_end
 	int		width;
 	int		win;
 	int		time_death;
+	int		death;
 }	t_end;
 
 typedef struct s_game
@@ -126,7 +127,6 @@ void		check_chars(t_game *game, char *path);
 
 int			render_images(t_game *game);
 void		init_images(t_game *game);
-void		put_image(t_game *game, int xyij[4]);
 void		delete_images(t_game game);
 void		do_death_animation(t_game *game);
 void		do_water_animation(t_game *game);

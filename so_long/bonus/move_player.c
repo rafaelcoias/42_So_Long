@@ -100,13 +100,16 @@ void	move_player(t_game *game, int key)
 	if (game->map.map[game->p_i][game->p_j] == 'E')
 		end_game(game, 1);
 	else if (game->map.map[game->p_i][game->p_j] == 'A')
-		end_game(game, 0);
+		game->end_game.death = 1;
 	else if (game->map.map[game->p_i][game->p_j] == 'C')
+	{
 		game->has_coll++;
+		game->score += 50;
+	}
 	else if (game->map.map[game->p_i][game->p_j] == 'S')
 		game->score += 575;
 	check_transport(game);
 	game->map.map[game->p_i][game->p_j] = 'P';
 	if (check_death(game))
-		end_game(game, 0);
+		game->end_game.death = 1;
 }

@@ -32,22 +32,19 @@ static void	put_nbr(t_game *game, int width, int h, int nbr)
 		game->img.nbr, width, h);
 }
 
-static void	write_score(t_game *game, int w, int h, int score)
+static void	write_score_in_end(t_game *game, int w, int h, int score)
 {
 	if (score < 10)
 		put_nbr(game, w, h, score);
 	else
 	{
-		write_score(game, w - 30, h, score / 10);
-		write_score(game, w, h, score % 10);
+		write_score_in_end(game, w - 30, h, score / 10);
+		write_score_in_end(game, w, h, score % 10);
 	}
 }
 
-static void	write_moves(t_game *game, int w, int h, int nbr)
+static void	write_moves_in_end(t_game *game, int w, int h, int nbr)
 {
-	int	score;
-
-	score = game->score + 500;
 	if (nbr < 10)
 	{
 		put_nbr(game, w, h, 0);
@@ -58,12 +55,12 @@ static void	write_moves(t_game *game, int w, int h, int nbr)
 		put_nbr(game, w, h, nbr / 10);
 		put_nbr(game, w + 25, h, nbr % 10);
 	}
-	if (score < 100)
-		write_score(game, 235, 390, score);
-	else if (score < 1000)
-		write_score(game, 265, 390, score);
+	if (game->score < 100)
+		write_score_in_end(game, 235, 390, game->score);
+	else if (game->score < 1000)
+		write_score_in_end(game, 265, 390, game->score);
 	else
-		write_score(game, 295, 390, score);
+		write_score_in_end(game, 295, 390, game->score);
 }
 
 static int	handle_keypress(int key, t_game *game)
@@ -91,11 +88,8 @@ static int	handle_keypress(int key, t_game *game)
 
 void	end_game(t_game *game, int win)
 {
-	while (!win && game->end_game.time_death < 5000)
-	{
-		do_death_animation(game);
-		game->end_game.time_death++;
-	}
+	game->img.player = mlx_xpm_file_to_image(game->img.mlx, PLAYER,
+			&game->img.width, &game->img.width);
 	game->end_game.time_death = 0;
 	game->end_game.win = win;
 	game->menu.in_end = 1;
@@ -109,7 +103,7 @@ void	end_game(t_game *game, int win)
 	else
 		mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
 			game->img.lose, 0, 0);
-	write_moves(game, 305, 345, game->count_moves);
+	write_moves_in_end(game, 305, 345, game->count_moves);
 	mlx_hook(game->end_game.window, 02, 0, &handle_keypress, game);
 	mlx_hook(game->end_game.window, 17, 0, click_to_exit_game, game);
 	mlx_loop(game->end_game.mlx);

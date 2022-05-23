@@ -20,9 +20,12 @@ void	init_game_stats(t_game *game)
 	game->count_moves = 0;
 	game->score = 0;
 	game->end_game.win = 0;
+	game->end_game.time_death = 0;
+	game->time_water = 0;
 	game->menu.in_end = 0;
 	game->menu.in_menu = 0;
 	game->menu.in_game = 1;
+	game->end_game.death = 0;
 }
 
 void	init_all_stats(t_game *game, char *path)

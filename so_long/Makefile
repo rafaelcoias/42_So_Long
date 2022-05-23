@@ -20,7 +20,7 @@ SRC =	${SRC_PATH}main.c			\
 		${SRC_PATH}end_game.c		\
 		${SRC_PATH}move_player.c	\
 		${SRC_PATH}render_images.c	\
-		${SRC_PATH}put_images.c		\
+		${SRC_PATH}write_in_game.c	\
 		${SRC_PATH}init_stats.c		\
 
 SRC_BONUS =	${BONUS_PATH}main.c			\
@@ -103,10 +103,12 @@ ${BONUS}: ${OBJ_B}
 
 ########## 		   RULES 		##########
 
-all: ${NAME} 
+all: ${NAME}
+	@clear
 	${CREATE_PROJ_MSG}
 
 bonus: ${BONUS}
+	@clear
 	${CREATE_BONUS_MSG}
 
 clean:
@@ -127,5 +129,6 @@ norm:
 	@cd ./src && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine *.h
 	${NORM_BONUS_MSG}
 	@cd ./bonus && norminette -R CheckForbiddenSourceHeader *.c && cd ../include && norminette -R CheckDefine *.h
+	@echo "\n"
 
 .PHONY: all bonus clean fclean re norm

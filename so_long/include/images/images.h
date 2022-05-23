@@ -65,6 +65,8 @@ typedef struct s_img
 	void	*line;
 	void	*mov;
 	void	*es;
+	void	*sco;
+	void	*re;
 	void	*win;
 	void	*lose;
 	void	*nbr;
@@ -72,7 +74,6 @@ typedef struct s_img
 	void	*menu_play;
 	void	*menu_exit;
     void    *water;
-    void    *death;
 }	t_img;
 
 #endif
