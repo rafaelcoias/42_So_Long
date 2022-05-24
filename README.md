@@ -25,6 +25,18 @@ MiniLibX is a tiny graphics library which allows you to do the most basic things
 
 See and start using minilibx with <a href="https://qst0.github.io/ft_libgfx/man_mlx.html">this</a> manual.
 
+<details><summary>My So Long</summary>
+  
+  
+  
+</details>
+
+<details><summary>My grade</summary>
+  
+  ![image](https://user-images.githubusercontent.com/91686183/169928122-e9d298b3-7720-40ba-b932-07404a8c2e15.png)
+  
+</details>
+
 <hr>
 
 I hope you found it interesting!
