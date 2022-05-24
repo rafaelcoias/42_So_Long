@@ -15,7 +15,7 @@ Make you work with textures, sprites, and some other very basic gameplay element
 So long will help you improve your skills in the following areas: window management,
 event handling, colors, textures, and so forth.
 
-## What you need to know before starting born2beroot
+## What you need to know before starting so long
 
 ### Minilibx
 
