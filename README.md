@@ -28,4 +28,5 @@ See and start using minilibx with <a href="https://qst0.github.io/ft_libgfx/man_
 <hr>
 
 I hope you found it interesting!
+
 If you are going to do so_long, I wish you good luck and hope that you learned something here!
