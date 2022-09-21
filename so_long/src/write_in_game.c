@@ -23,7 +23,7 @@ static void	write_move_number(t_game *game, int width, int nbr)
 	{
 
 		put_nbr(game, width, 0);
-		put_nbr(game, width + 15, game->count_moves);
+		put_nbr(game, width + 15, nbr);
 	}
 	else if (nbr < 100)
 	{

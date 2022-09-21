@@ -62,7 +62,7 @@ CC = gcc
 
 ########## 		   FLAGS 		##########
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 MLX_FLAGS = -lXext -lX11 -lm -lz
 
@@ -132,7 +132,7 @@ fclean: clean
 	${REMOVED_MSG}
 	
 
-re:	fclean all
+re:	fclean all bonus
 
 norm:
 	@cd ${LIBFT_PATH} && make norm

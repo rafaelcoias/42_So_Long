@@ -16,17 +16,26 @@ static void	init_images3(t_game *game)
 {
 	int	i;
 	char *str;
+	char *str2;
+	
 	i = -1;
-
 	str = ft_strdup(NBR_PATH);
-
 	while (++i != 10)
 	{		
 		game->img.nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
 			&game->img.width, &game->img.width);		
 		str[23]	= '0' + i;	
 	}
+	i = -1;
+	str2 = ft_strdup(NBR_WIN_PATH);
+	while (++i != 10)
+	{		
+		game->img.win_nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str2,
+			&game->img.width, &game->img.width);		
+		str2[23]	= '0' + i;	
+	}
 	free(str);
+	free(str2);
 }
 
 static void	init_images2(t_game *game)
@@ -84,6 +93,18 @@ void	init_images(t_game *game)
 	init_images2(game);
 }
 
+static void delete_images2(t_game game)
+{
+	int i;
+
+	i = -1;
+	while (++i != 10)
+		mlx_destroy_image(game.img.mlx, game.img.nbrs[i]);
+	i = -1;
+	while (++i != 10)
+		mlx_destroy_image(game.img.mlx, game.img.win_nbrs[i]);
+}
+
 void	delete_images(t_game game)
 {
 	mlx_destroy_image(game.img.mlx, game.img.wall);
@@ -106,4 +127,5 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.menu_exit);
 	mlx_destroy_image(game.img.mlx, game.img.sco);
 	mlx_destroy_image(game.img.mlx, game.img.re);
+	delete_images2(game);
 }

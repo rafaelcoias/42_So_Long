@@ -15,7 +15,7 @@
 static void	put_nbr(t_game *game, int width, int h, int nbr)
 {
 	mlx_put_image_to_window(game->img.mlx, game->window,
-			(game->img.nbrs[nbr]), width, h);
+			(game->img.win_nbrs[nbr]), width, h);
 }
 
 static void	write_score_in_end(t_game *game, int w, int h, int score)

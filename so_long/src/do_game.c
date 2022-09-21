@@ -33,7 +33,6 @@ static int	check_arrows(int key)
 
 static int	handle_keypress(int key, t_game *game)
 {
-	printf("%i ", key);
 	if (key == ESCAPE)
 	{
 		mlx_destroy_window(game->mlx, game->window);

@@ -63,8 +63,8 @@ int	render_images(t_game *game)
 	xyij[2] = -1;
 	write_moves(game);
 	write_score(game);
-	do_water_animation(game);
-	do_death_animation(game);
+	//do_water_animation(game);
+	//do_death_animation(game);
 	while (++xyij[2] < game->map.height)
 	{
 		xyij[3] = -1;

@@ -32,7 +32,7 @@
 # define SCO "include/images/game/SCO.xpm"
 # define RE "include/images/game/RE.xpm"
 # define NBR_PATH "include/images/numbers/0.xpm"
-# define NBR_WIN_PATH "include/images/win_numbers/0.xpm"
+# define NBR_WIN_PATH "include/images/winnums/0.xpm"
 
 /* ANIMATIONS */
 
@@ -41,6 +41,7 @@
 # define DEATH_3 "include/images/animations/death_3.xpm"
 # define DEATH_4 "include/images/animations/death_4.xpm"
 # define DEATH_5 "include/images/animations/death_5.xpm"
+
 # define WATER_1 "include/images/animations/water_1.xpm"
 # define WATER_2 "include/images/animations/water_2.xpm"
 # define WATER_3 "include/images/animations/water_3.xpm"
@@ -74,6 +75,7 @@ typedef struct s_img
 	void	*menu_exit;
     void    *water;
 	void	*nbrs[10];
+	void	*win_nbrs[10];
 }	t_img;
 
 #endif

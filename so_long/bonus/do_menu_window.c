@@ -111,7 +111,7 @@ void	do_menu_window(t_game *game)
 		init_menu_window(game);
 	mlx_put_image_to_window(game->menu.mlx, game->menu.window,
 		game->img.menu_test, 0, 0);
-	mlx_hook(game->menu.window, 02, 0, &handle_keypress, game);
+	mlx_hook(game->menu.window, 02, (1L << 0), &handle_keypress, game);
 	mlx_hook(game->menu.window, 17, 0, click_to_exit_menu, game);
 	mlx_loop(game->menu.mlx);
 }
