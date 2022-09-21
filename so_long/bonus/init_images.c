@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 20:16:09 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 22:21:46 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:49:52 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	init_images3(t_game *game)
 {
 	int	i;
 	char *str;
-	char *str2;
 	
 	i = -1;
 	str = ft_strdup(NBR_PATH);
@@ -26,16 +25,36 @@ static void	init_images3(t_game *game)
 			&game->img.width, &game->img.width);		
 		str[23]	= '0' + i;	
 	}
+	free(str);
 	i = -1;
-	str2 = ft_strdup(NBR_WIN_PATH);
+	str = ft_strdup(NBR_WIN_PATH);
 	while (++i != 10)
 	{		
-		game->img.win_nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str2,
+		game->img.win_nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
 			&game->img.width, &game->img.width);		
-		str2[23]	= '0' + i;	
+		str[23]	= '0' + i;	
 	}
 	free(str);
-	free(str2);
+	i = 0;
+	game->img.player[0] = mlx_xpm_file_to_image(game->img.mlx, PLAYER,
+		&game->img.width, &game->img.width);
+	str = ft_strdup(DEATH_1);
+	while (++i != 6)
+	{
+		game->img.player[i] = mlx_xpm_file_to_image(game->img.mlx, str,
+			&game->img.width, &game->img.width);
+		str[33] = '0' + i;
+	}
+	free(str);
+	i = -1;
+	str = ft_strdup(WATER_1);
+	while (++i != 5)
+	{
+		game->img.water[i] = mlx_xpm_file_to_image(game->img.mlx, str,
+			&game->img.width, &game->img.width);
+		str[33] = '0' + i;
+	}
+	free(str);
 }
 
 static void	init_images2(t_game *game)
@@ -74,8 +93,6 @@ void	init_images(t_game *game)
 			&game->img.width, &game->img.width);
 	game->img.back_ground = mlx_xpm_file_to_image(game->img.mlx, BACK_GRD,
 			&game->img.width, &game->img.width);
-	game->img.player = mlx_xpm_file_to_image(game->img.mlx, PLAYER,
-			&game->img.width, &game->img.width);
 	game->img.collectable = mlx_xpm_file_to_image(game->img.mlx, COLL,
 			&game->img.width, &game->img.width);
 	game->img.bonus = mlx_xpm_file_to_image(game->img.mlx, BONUS,
@@ -87,8 +104,6 @@ void	init_images(t_game *game)
 	game->img.transport = mlx_xpm_file_to_image(game->img.mlx, TRANSPORT,
 			&game->img.width, &game->img.width);
 	game->img.line = mlx_xpm_file_to_image(game->img.mlx, LINE,
-			&game->img.width, &game->img.width);
-	game->img.water = mlx_xpm_file_to_image(game->img.mlx, WATER_1,
 			&game->img.width, &game->img.width);
 	init_images2(game);
 }
@@ -103,6 +118,12 @@ static void delete_images2(t_game game)
 	i = -1;
 	while (++i != 10)
 		mlx_destroy_image(game.img.mlx, game.img.win_nbrs[i]);
+	i = -1;
+	while (++i != 6)
+		mlx_destroy_image(game.img.mlx, game.img.player[i]);
+	i = -1;
+	while (++i != 5)
+		mlx_destroy_image(game.img.mlx, game.img.water[i]);
 }
 
 void	delete_images(t_game game)

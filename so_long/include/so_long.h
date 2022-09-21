@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:54:49 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:28:52 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:56:49 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int			render_images(t_game *game);
 void		init_images(t_game *game);
 void		delete_images(t_game game);
 void		do_death_animation(t_game *game);
-void		do_water_animation(t_game *game);
+void		do_water_animation(t_game *game, int xyij[4]);
 
 /* GAME FUNCTIONS */
 

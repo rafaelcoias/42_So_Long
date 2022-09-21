@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:59:02 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:01:00 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:31:37 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static int	handle_keypress(int key, t_game *game)
 		return (0);
 	if (key == ENTER && game->menu.test)
 	{
+		mlx_destroy_display(game->menu.mlx);
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(MAP_TEST, game);
 		init_game_window(game);
@@ -83,6 +84,7 @@ static int	handle_keypress(int key, t_game *game)
 	}
 	else if (key == ENTER && game->menu.play)
 	{
+		mlx_destroy_display(game->menu.mlx);
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(game->map.path, game);
 		init_game_window(game);
@@ -99,6 +101,7 @@ void	do_menu_window(t_game *game)
 	{
 		init_menu_stats(game);
 		game->menu.test = 1;
+		mlx_destroy_display(game->end_game.mlx);
 		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
 		game->menu.in_end = 0;
 		game->menu.in_menu = 1;

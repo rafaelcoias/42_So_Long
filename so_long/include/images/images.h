@@ -57,7 +57,6 @@ typedef struct s_img
 	void	*wall;
 	void	*exit;
 	void	*back_ground;
-	void	*player;
 	void	*player_w_coll;
 	void	*collectable;
 	void	*bonus;
@@ -73,7 +72,8 @@ typedef struct s_img
 	void	*menu_test;
 	void	*menu_play;
 	void	*menu_exit;
-    void    *water;
+	void	*water[5];
+	void	*player[6];
 	void	*nbrs[10];
 	void	*win_nbrs[10];
 }	t_img;

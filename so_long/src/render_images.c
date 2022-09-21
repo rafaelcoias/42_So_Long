@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:28:03 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:57:37 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static void	put_image2(t_game *game, int xyij[4])
 {
 	if (game->map.map[xyij[2]][xyij[3]] == 'A')
-		mlx_put_image_to_window(game->mlx, game->window, game->img.water,
-			xyij[0], xyij[1]);
+		do_water_animation(game, xyij);
 	else if (game->map.map[xyij[2]][xyij[3]] == 'E'
 		&& game->has_coll == game->map.count_col)
 		mlx_put_image_to_window(game->mlx, game->window, game->img.exit,

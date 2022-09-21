@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:15 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 16:24:46 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:33:03 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ int	click_to_exit_game(t_game *game)
 	delete_images(*game);
 	if (game->mlx)
 	{
+		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->window);
 		free(game->mlx);
 	}
 	else
 	{
+		mlx_destroy_display(game->end_game.mlx);
 		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
 		free(game->mlx);
 	}
@@ -76,6 +78,7 @@ int	click_to_exit_game(t_game *game)
 
 int	click_to_exit_menu(t_game *game)
 {
+	mlx_destroy_display(game->menu.mlx);
 	mlx_destroy_window(game->menu.mlx, game->menu.window);
 	delete_images(*game);
 	free(game->menu.mlx);

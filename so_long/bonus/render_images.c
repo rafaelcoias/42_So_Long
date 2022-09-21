@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:28:03 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:50:42 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	put_image2(t_game *game, int xyij[4])
 		mlx_put_image_to_window(game->mlx, game->window, game->img.block,
 			xyij[0], xyij[1]);
 	else if (game->map.map[xyij[2]][xyij[3]] == 'A')
-		mlx_put_image_to_window(game->mlx, game->window, game->img.water,
+		mlx_put_image_to_window(game->mlx, game->window, game->img.water[0],
 			xyij[0], xyij[1]);
 	else if (game->map.map[xyij[2]][xyij[3]] == 'T')
 		mlx_put_image_to_window(game->mlx, game->window, game->img.transport,
@@ -44,7 +44,7 @@ static void	put_image(t_game *game, int xyij[4])
 			xyij[0], xyij[1]);
 	else if ((game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll == 0)
 			|| game->end_game.death)
-		mlx_put_image_to_window(game->mlx, game->window, game->img.player,
+		mlx_put_image_to_window(game->mlx, game->window, game->img.player[0],
 			xyij[0], xyij[1]);
 	else if (game->map.map[xyij[2]][xyij[3]] == 'P' && game->has_coll != 0)
 		mlx_put_image_to_window(game->mlx, game->window,
@@ -63,7 +63,7 @@ int	render_images(t_game *game)
 	xyij[2] = -1;
 	write_moves(game);
 	write_score(game);
-	//do_water_animation(game);
+	do_water_animation(game);
 	//do_death_animation(game);
 	while (++xyij[2] < game->map.height)
 	{
