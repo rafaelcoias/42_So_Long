@@ -17,20 +17,23 @@
 
 # include "./libft/libft.h"
 # include "./images/images.h"
-# include <mlx.h>
+# include "./mlx/mlx.h"
 
 /* DEFINES */
 
-# define A 0
-# define D 2
-# define S 1
-# define W 13
+# define A 97
+# define D 100
+# define S 115
+# define W 119
+
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-# define ESCAPE 53
+
+# define ESCAPE 65307
 # define ENTER 36
+
 # define PIXEL_SIZE 50
 # define ANIM_TIME 5000
 # define MAP_TEST "include/maps/tutorial.ber"

@@ -14,21 +14,7 @@
 
 static void	put_nbr(t_game *game, int w, int nbr)
 {
-	int		i;
-	char	*str;
-	char	*path;
-
-	i = -1;
-	str = malloc(sizeof(char) * 29);
-	path = NBR_PATH;
-	while (path[++i])
-		str[i] = path[i];
-	str[i] = '\0';
-	str[23] = nbr + '0';
-	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
-			&game->img.width, &game->img.width);
-	free(str);
-	mlx_put_image_to_window(game->img.mlx, game->window, game->img.nbr, w, 0);
+	mlx_put_image_to_window(game->img.mlx, game->window, (game->img.nbrs[nbr]), w, 0);
 }
 
 static void	write_move_number(t_game *game, int width, int nbr)

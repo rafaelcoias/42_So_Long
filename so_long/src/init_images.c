@@ -12,19 +12,35 @@
 
 #include "../include/so_long.h"
 
+static void	init_images3(t_game *game)
+{
+	int	i;
+	char *str;
+	i = -1;
+
+	str = ft_strdup(NBR_PATH);
+
+	while (++i != 10)
+	{		
+		game->img.nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
+			&game->img.width, &game->img.width);		
+		str[23]	= '0' + i;	
+	}
+	free(str);
+}
+
 static void	init_images2(t_game *game)
 {
-	int	twenty;
 	int	t_five;
 	int	fivety;
 
-	twenty = 20;
 	t_five = 25;
 	fivety = 50;
 	game->img.mov = mlx_xpm_file_to_image(game->img.mlx, MOV,
 			&fivety, &t_five);
 	game->img.es = mlx_xpm_file_to_image(game->img.mlx, ES,
 			&fivety, &t_five);
+	init_images3(game);
 }
 
 void	init_images(t_game *game)

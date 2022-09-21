@@ -12,6 +12,23 @@
 
 #include "../include/so_long.h"
 
+static void	init_images3(t_game *game)
+{
+	int	i;
+	char *str;
+	i = -1;
+
+	str = ft_strdup(NBR_PATH);
+
+	while (++i != 10)
+	{		
+		game->img.nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
+			&game->img.width, &game->img.width);		
+		str[23]	= '0' + i;	
+	}
+	free(str);
+}
+
 static void	init_images2(t_game *game)
 {
 	int	t_five;
@@ -27,8 +44,6 @@ static void	init_images2(t_game *game)
 			&fivety, &t_five);
 	game->img.re = mlx_xpm_file_to_image(game->img.mlx, RE,
 			&fivety, &t_five);
-	game->img.nbr = mlx_xpm_file_to_image(game->img.mlx, NBR_PATH,
-			&game->img.width, &game->img.width);
 	game->img.win = mlx_xpm_file_to_image(game->img.mlx, WIN,
 			&game->menu.width, &game->menu.width);
 	game->img.lose = mlx_xpm_file_to_image(game->img.mlx, LOSE,
@@ -39,6 +54,7 @@ static void	init_images2(t_game *game)
 			&game->menu.width, &game->menu.width);
 	game->img.menu_exit = mlx_xpm_file_to_image(game->img.mlx, MENU_EXIT,
 			&game->menu.width, &game->menu.width);
+	init_images3(game);
 }
 
 void	init_images(t_game *game)
@@ -85,7 +101,6 @@ void	delete_images(t_game game)
 	mlx_destroy_image(game.img.mlx, game.img.es);
 	mlx_destroy_image(game.img.mlx, game.img.win);
 	mlx_destroy_image(game.img.mlx, game.img.lose);
-	mlx_destroy_image(game.img.mlx, game.img.nbr);
 	mlx_destroy_image(game.img.mlx, game.img.menu_test);
 	mlx_destroy_image(game.img.mlx, game.img.menu_play);
 	mlx_destroy_image(game.img.mlx, game.img.menu_exit);

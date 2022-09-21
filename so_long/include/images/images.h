@@ -69,11 +69,11 @@ typedef struct s_img
 	void	*re;
 	void	*win;
 	void	*lose;
-	void	*nbr;
 	void	*menu_test;
 	void	*menu_play;
 	void	*menu_exit;
     void    *water;
+	void	*nbrs[10];
 }	t_img;
 
 #endif

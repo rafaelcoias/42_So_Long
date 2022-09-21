@@ -42,9 +42,13 @@ SRC_BONUS =	${BONUS_PATH}main.c			\
 
 HEAD = ./include
 
+MLX	= ./include/mlx/libmlx.a
+
+MLX_PATH = ./include/mlx/
+
 ########## 		   LIBFT 		##########
 
-LIBFT = libft
+LIBFT = $(LIBFT_PATH)libft.a
 
 LIBFT_PATH = ./include/libft/
 
@@ -58,9 +62,9 @@ CC = gcc
 
 ########## 		   FLAGS 		##########
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror 
 
-MLX_FLAGS = -l mlx -l ft -framework OpenGL -framework Appkit
+MLX_FLAGS = -lXext -lX11 -lm -lz
 
 ########## 		   COLORS 		##########
 
@@ -70,6 +74,8 @@ RED			=	\033[0;31m
 RESET       =   \033[0m
 
 ########## 		  COMMANDS		##########
+
+MAKE_MLX = cd ${MLX_PATH} && make
 
 MAKE_LIBFT = cd ${LIBFT_PATH} && make all
 
@@ -93,13 +99,17 @@ NORM_BONUS_MSG = @echo "\n<========== $(YELLOW)Norm $(BONUS)$(RESET) ==========>
 
 ########## 		  TARGETS 		##########
 
-${NAME}: ${OBJ} 
-	${MAKE_LIBFT} -s
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
+${NAME}: ${OBJ} ${MLX} ${LIBFT}
+	$(CC) $(OBJ) $(LIBFT) $(MLX) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
 
-${BONUS}: ${OBJ_B}
-	${MAKE_LIBFT} -s
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(BONUS) $(OBJ_B) -L $(LIBFT_PATH) -lft
+${BONUS}: ${OBJ_B} ${MLX} ${LIBFT}
+	$(CC) $(OBJ_B) $(LIBFT) $(MLX)  $(CFLAGS) $(MLX_FLAGS) -o $(BONUS)
+
+${MLX}: 
+		@make -C $(MLX_PATH)
+
+${LIBFT}:
+		@make -C $(LIBFT_PATH)
 
 ########## 		   RULES 		##########
 
@@ -112,6 +122,7 @@ bonus: ${BONUS}
 	${CREATE_BONUS_MSG}
 
 clean:
+	@cd $(MLX_PATH) && make clean
 	${CLEAN_LIBFT}
 	${RM} ${OBJ} ${OBJ_B}
 

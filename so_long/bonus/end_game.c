@@ -14,22 +14,8 @@
 
 static void	put_nbr(t_game *game, int width, int h, int nbr)
 {
-	int		i;
-	char	*str;
-	char	*path;
-
-	i = -1;
-	str = malloc(sizeof(char) * 33);
-	path = NBR_WIN_PATH;
-	while (path[++i])
-		str[i] = path[i];
-	str[i] = '\0';
-	str[27] = nbr + '0';
-	game->img.nbr = mlx_xpm_file_to_image(game->mlx, str,
-			&game->img.width, &game->img.width);
-	free(str);
-	mlx_put_image_to_window(game->end_game.mlx, game->end_game.window,
-		game->img.nbr, width, h);
+	mlx_put_image_to_window(game->img.mlx, game->window,
+			(game->img.nbrs[nbr]), width, h);
 }
 
 static void	write_score_in_end(t_game *game, int w, int h, int score)
