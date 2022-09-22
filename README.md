@@ -26,8 +26,18 @@ MiniLibX is a tiny graphics library which allows you to do the most basic things
 See and start using minilibx with <a href="https://qst0.github.io/ft_libgfx/man_mlx.html">this</a> manual.
 
 <details><summary>My So Long</summary>
-  
-  
+
+<br>
+
+  It has a lot of delay. Git clone it and play by your self !
+
+#### Menu
+
+  ![Screencast-from-22-09-2022-18183](https://user-images.githubusercontent.com/91686183/191812033-26c1e416-baed-4974-9bd5-25873a1f79a3.gif)
+
+#### Game
+
+  ![Screencast from 22-09-2022 18_06_42](https://user-images.githubusercontent.com/91686183/191809639-b10f346d-5c52-4d80-80c8-f38eb883990c.gif)
   
 </details>
 
