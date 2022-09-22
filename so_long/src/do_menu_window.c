@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:59:02 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 16:32:51 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:52:38 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,10 @@ static void	handle_keypress2(int key, t_game *game)
 {
 	if (key == ESCAPE || (key == ENTER && game->menu.exit))
 	{
-		mlx_destroy_window(game->menu.mlx, game->menu.window);
-		delete_images(*game);
+		mlx_destroy_display(game->menu.mlx);
+		mlx_destroy_window(game->menu.mlx, game->menu.window);	
 		free(game->menu.mlx);
-		free(game->img.mlx);
-		if (game->mlx)
-			free(game->mlx);
-		exit(0);
+		exit_game(game);
 	}
 	check_arrows(game, key);
 	if (game->menu.test)
@@ -81,6 +78,7 @@ static int	handle_keypress(int key, t_game *game)
 	{
 		mlx_destroy_display(game->menu.mlx);
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
+		free(game->menu.mlx);
 		init_game(MAP_TEST, game);
 		init_game_window(game);
 		write_line(game);
@@ -91,6 +89,7 @@ static int	handle_keypress(int key, t_game *game)
 	{
 		mlx_destroy_display(game->menu.mlx);
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
+		free(game->menu.mlx);
 		init_game(game->map.path, game);
 		init_game_window(game);
 		write_line(game);

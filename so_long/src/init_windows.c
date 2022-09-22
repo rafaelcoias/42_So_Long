@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:15 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/21 19:33:03 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:51:36 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,29 @@ void	init_end_game_window(t_game *game)
 	error_msg(WIN_ERROR);
 }
 
+int	click_to_exit_end_game(t_game *game)
+{
+	mlx_destroy_display(game->end_game.mlx);
+	mlx_destroy_window(game->end_game.mlx, game->end_game.window);
+	free(game->end_game.mlx);
+	free_map(game->map.map);
+	exit_game(game);
+	return (1);
+}
+
 int	click_to_exit_game(t_game *game)
 {
-	delete_images(*game);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		mlx_destroy_window(game->mlx, game->window);
-		free(game->mlx);
-	}
-	else
-	{
-		mlx_destroy_display(game->end_game.mlx);
-		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
-		free(game->mlx);
-	}
-	free(game->img.mlx);
-	if (game->map.map)
-		free_map(game->map.map);
-	exit(0);
+	mlx_destroy_display(game->mlx);
+	mlx_destroy_window(game->mlx, game->window);
+	free_map(game->map.map);
+	exit_game(game);
+	return (1);
 }
 
 int	click_to_exit_menu(t_game *game)
 {
 	mlx_destroy_display(game->menu.mlx);
 	mlx_destroy_window(game->menu.mlx, game->menu.window);
-	delete_images(*game);
-	free(game->menu.mlx);
-	free(game->img.mlx);
-	exit(0);
+	exit_game(game);
+	return (1);
 }

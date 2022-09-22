@@ -6,11 +6,18 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 20:24:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/04/28 21:55:07 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:52:51 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	exit_game(t_game *game)
+{	
+	delete_images(*game);
+	free(game->img.mlx);
+	exit(0);
+}
 
 int	error_msg(char *str)
 {

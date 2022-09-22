@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:54:49 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 15:26:56 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:20:46 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ void		write_score(t_game *game);
 
 int			click_to_exit_game(t_game *game);
 int			click_to_exit_menu(t_game *game);
+int		click_to_exit_end_game(t_game *game);
 void		free_map(char **map);
+void	exit_game(t_game *game);
 
 #endif

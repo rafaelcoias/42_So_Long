@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:01:04 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 16:49:30 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:44:22 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,15 @@ static int	handle_keypress(int key, t_game *game)
 	if (key == ENTER)
 	{
 		do_menu_window(game);
-		if (game->map.map)
-			free_map(game->map.map);
+		free_map(game->map.map);
 	}
 	else if (key == ESCAPE)
 	{
 		mlx_destroy_display(game->end_game.mlx);
 		mlx_destroy_window(game->end_game.mlx, game->end_game.window);
-		delete_images(*game);
 		free(game->end_game.mlx);
-		free(game->img.mlx);
-		free(game->mlx);
-		if (game->map.map)
-			free_map(game->map.map);
-		exit(0);
+		free_map(game->map.map);
+		exit_game(game);
 	}
 	return (1);
 }
@@ -94,6 +89,6 @@ void	end_game(t_game *game, int win)
 			game->img.lose, 0, 0);
 	write_moves_in_end(game, 305, 345, game->count_moves);
 	mlx_hook(game->end_game.window, 02, (1L << 0), &handle_keypress, game);
-	mlx_hook(game->end_game.window, 17, 0, click_to_exit_game, game);
+	mlx_hook(game->end_game.window, 17, 0, click_to_exit_end_game, game);
 	mlx_loop(game->end_game.mlx);
 }

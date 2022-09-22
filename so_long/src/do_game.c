@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:58:09 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 16:34:34 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:38:51 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ static int	handle_keypress(int key, t_game *game)
 		return (0);
 	if (key == ESCAPE)
 	{
+		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->window);
-		delete_images(*game);
 		free(game->mlx);
-		free(game->img.mlx);
-		if (game->map.map)
-			free_map(game->map.map);
-		exit(0);
+		free_map(game->map.map);
+		exit_game(game);
 	}
 	if (check_arrows(key))
 		move_player(game, key);
