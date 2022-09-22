@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:01:04 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 08:28:51 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:49:30 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	write_moves_in_end(t_game *game, int w, int h, int nbr)
 	else if (game->score < 1000)
 		write_score_in_end(game, 275, 390, game->score);
 	else
-		write_score_in_end(game, 305, 390, game->score);
+		write_score_in_end(game, 325, 390, game->score);
 }
 
 static int	handle_keypress(int key, t_game *game)
@@ -66,6 +66,7 @@ static int	handle_keypress(int key, t_game *game)
 		delete_images(*game);
 		free(game->end_game.mlx);
 		free(game->img.mlx);
+		free(game->mlx);
 		if (game->map.map)
 			free_map(game->map.map);
 		exit(0);

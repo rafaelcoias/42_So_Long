@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:24 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 11:49:11 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:39:59 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	render_images(t_game *game)
 	xyij[0] = 0;
 	xyij[1] = 25;
 	xyij[2] = -1;
-	write_moves(game);
-	write_score(game);
 	do_death_animation(game);
 	do_water_animation(game);
 	while (++xyij[2] < game->map.height)

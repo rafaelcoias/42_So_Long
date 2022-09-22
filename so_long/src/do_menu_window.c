@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:59:02 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/21 19:31:37 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:32:51 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	handle_keypress2(int key, t_game *game)
 		delete_images(*game);
 		free(game->menu.mlx);
 		free(game->img.mlx);
+		if (game->mlx)
+			free(game->mlx);
 		exit(0);
 	}
 	check_arrows(game, key);
@@ -71,7 +73,9 @@ static void	handle_keypress2(int key, t_game *game)
 
 static int	handle_keypress(int key, t_game *game)
 {
-	if (!game->menu.mlx || !game->menu.in_menu)
+	if (!game->menu.mlx || !game->menu.in_menu
+		|| (key != ENTER && key != ESCAPE && key != UP
+		&& key != DOWN))
 		return (0);
 	if (key == ENTER && game->menu.test)
 	{
@@ -79,6 +83,7 @@ static int	handle_keypress(int key, t_game *game)
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(MAP_TEST, game);
 		init_game_window(game);
+		write_line(game);
 		render_images(game);
 		do_game(game);
 	}
@@ -88,6 +93,7 @@ static int	handle_keypress(int key, t_game *game)
 		mlx_destroy_window(game->menu.mlx, game->menu.window);
 		init_game(game->map.path, game);
 		init_game_window(game);
+		write_line(game);
 		render_images(game);
 		do_game(game);
 	}

@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 20:16:09 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 10:11:05 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:56:07 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_images3(t_game *game)
 	{		
 		game->img.nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
 			&game->img.width, &game->img.width);		
-		str[23]	= '0' + i;	
+		str[23]	= '0' + (i + 1);	
 	}
 	free(str);
 	i = -1;
@@ -32,7 +32,7 @@ static void	init_images3(t_game *game)
 	{		
 		game->img.win_nbrs[i] = mlx_xpm_file_to_image(game->img.mlx, str,
 			&game->img.width, &game->img.width);		
-		str[23]	= '0' + i;	
+		str[23]	= '0' + (i + 1);	
 	}
 	free(str);
 	i = 0;

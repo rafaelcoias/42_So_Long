@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:54:49 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/22 11:47:00 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:26:56 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void		end_game(t_game *game, int win);
 
 /* WRITE FUNCTIONS */
 
+void		write_line(t_game *game);
 void		write_moves(t_game *game);
 void		write_score(t_game *game);
 

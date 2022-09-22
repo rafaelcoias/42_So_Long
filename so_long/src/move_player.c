@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:06:57 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:10:48 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:13:17 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,24 @@ static void	check_transport(t_game *game)
 static int	check_death(t_game *game)
 {
 	if ((game->map.map[game->p_i][game->p_j + 1] == 'A'
-		|| game->map.map[game->p_i][game->p_j + 1] == '1')
+		|| game->map.map[game->p_i][game->p_j + 1] == '1'
+		|| !can_move(game, RIGHT))
 		&& (game->map.map[game->p_i][game->p_j - 1] == 'A'
-		|| game->map.map[game->p_i][game->p_j - 1] == '1')
+		|| game->map.map[game->p_i][game->p_j - 1] == '1'
+		|| !can_move(game, LEFT))
 		&& (game->map.map[game->p_i + 1][game->p_j] == 'A'
-		|| game->map.map[game->p_i + 1][game->p_j] == '1')
+		|| game->map.map[game->p_i + 1][game->p_j] == '1'
+		|| !can_move(game, DOWN))
 		&& (game->map.map[game->p_i - 1][game->p_j] == 'A'
-		|| game->map.map[game->p_i - 1][game->p_j] == '1'))
+		|| game->map.map[game->p_i - 1][game->p_j] == '1'
+		|| !can_move(game, UP)))
 		return (1);
 	return (0);
 }
 
 void	move_player(t_game *game, int key)
 {
-	if (!can_move(game, key))
+	if (!can_move(game, key) || game->end_game.death)
 		return ;
 	game->map.map[game->p_i][game->p_j] = 'A';
 	move(game, key);
@@ -112,4 +116,6 @@ void	move_player(t_game *game, int key)
 	game->map.map[game->p_i][game->p_j] = 'P';
 	if (check_death(game))
 		game->end_game.death = 1;
+	write_moves(game);
+	write_score(game);
 }

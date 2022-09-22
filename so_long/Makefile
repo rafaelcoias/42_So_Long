@@ -43,7 +43,7 @@ CC = gcc
 
 ########## 		   FLAGS 		##########
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 MLX_FLAGS = -lXext -lX11 -lm -lz
 
