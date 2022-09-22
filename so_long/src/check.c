@@ -25,7 +25,7 @@ static int	check_is_rect(char *path)
 	len = ft_strlen(line);
 	while (line)
 	{
-		if (ft_strlen(line) != len && line[0] != '\n')
+		if (ft_strlen(line) != len)
 			return (0);
 		free(line);
 		line = get_next_line(fd);
@@ -51,7 +51,7 @@ static void	confirm_chars(t_game *game, char *line, int row, int coll)
 	}
 	else if (line[coll] != '1')
 		game->map.count_ground++;
-	if (!ft_strchr("10CEP\n", line[coll]))
+	if (!ft_strchr("10CEPBST\n", line[coll]))
 		error_msg(UNKNOWN_CHAR);
 }
 
@@ -64,6 +64,7 @@ void	check_chars(t_game *game, char *path)
 
 	row = 0;
 	coll = -1;
+	game->map.count_col = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_msg(MAP_RD_ERROR);
@@ -71,7 +72,7 @@ void	check_chars(t_game *game, char *path)
 	while (line)
 	{
 		coll = -1;
-		while (line[++coll + 1] && line[0] != '\n')
+		while (line[++coll + 1])
 			confirm_chars(game, line, row, coll);
 		row++;
 		free(line);

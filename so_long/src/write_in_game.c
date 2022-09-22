@@ -21,14 +21,33 @@ static void	write_move_number(t_game *game, int width, int nbr)
 {
 	if (nbr < 10)
 	{
-
 		put_nbr(game, width, 0);
-		put_nbr(game, width + 15, nbr);
+		put_nbr(game, width + 15, game->count_moves);
 	}
 	else if (nbr < 100)
 	{
 		put_nbr(game, width, nbr / 10);
 		put_nbr(game, width + 15, nbr % 10);
+	}
+}
+
+static void	write_score_number(t_game *game, int width, int nbr, int fst)
+{
+	if (fst && nbr < 1000)
+		put_nbr(game, game->width - 100, 0);
+	if (fst && nbr == 0)
+	{
+		put_nbr(game, game->width - 100, 0);
+		put_nbr(game, game->width - 85, 0);
+		put_nbr(game, game->width - 70, 0);
+		put_nbr(game, game->width - 55, 0);
+	}
+	else if (nbr < 10)
+		put_nbr(game, width, nbr);
+	else
+	{
+		write_score_number(game, width - 15, nbr / 10, 0);
+		write_score_number(game, width, nbr % 10, 0);
 	}
 }
 
@@ -46,4 +65,13 @@ void	write_moves(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window, game->img.mov, 50, 0);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.es, 100, 0);
 	write_move_number(game, 150, game->count_moves);
+}
+
+void	write_score(t_game *game)
+{
+	mlx_put_image_to_window(game->mlx, game->window, game->img.sco,
+		game->width - 200, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->img.re,
+		game->width - 150, 0);
+	write_score_number(game, game->width - 50, game->score, 1);
 }

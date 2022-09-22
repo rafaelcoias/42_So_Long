@@ -6,7 +6,7 @@
 /*   By: rade-sar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:54:49 by rade-sar          #+#    #+#             */
-/*   Updated: 2022/09/21 19:56:49 by rade-sar         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:47:00 by rade-sar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_end
 	int		win;
 	int		time_death;
 	int		death;
+	int		player;
 }	t_end;
 
 typedef struct s_game
@@ -103,6 +104,7 @@ typedef struct s_game
 	int		count_moves;
 	int		score;
 	int		time_water;
+	int		water;
 	t_menu	menu;
 	t_end	end_game;
 	t_map	map;
@@ -132,7 +134,7 @@ int			render_images(t_game *game);
 void		init_images(t_game *game);
 void		delete_images(t_game game);
 void		do_death_animation(t_game *game);
-void		do_water_animation(t_game *game, int xyij[4]);
+void		do_water_animation(t_game *game);
 
 /* GAME FUNCTIONS */
 
