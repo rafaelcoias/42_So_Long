@@ -29,7 +29,7 @@ See and start using minilibx with <a href="https://qst0.github.io/ft_libgfx/man_
 
 <br>
 
-  This gifs have a lot of delay. Git clone it and play by your self (only works for linux OS) !
+  This gifs have a lot of delay. Git clone it and play by yourself (only works for linux OS) !
 
 #### Menu
 
